@@ -1,0 +1,18 @@
+{
+  "code": 200,
+  "body": {
+    "code": 200,
+    "data": {
+      "token": "LOCAL_TOKEN",
+      "user" : {
+        "id"       : "9197137",
+        "firstName": "Gino.F",
+        "lastName" : "Zhang",
+        "photo"    : {
+          "prefix": "https:\\/\\/fastly.4sqi.net\\/img\\/user\\/",
+          "suffix": "\/KTS5DWCSJBOBHRG3.jpg"
+        }
+      }
+    }
+  }
+}

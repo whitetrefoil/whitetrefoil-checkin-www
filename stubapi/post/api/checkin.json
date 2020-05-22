@@ -1,0 +1,18 @@
+{
+  "code": 201,
+  "data": {
+    "code": 201,
+    "data": {
+      "isMayor": false,
+      "score"  : 5,
+      "reasons": [
+        {
+          "icon": "https://ss1.4sqi.net/img/points/coin_icon_clock.png",
+          "message": "Welcome back! You haven't checked in to Tera Wellness Club since July '18.",
+          "points": 5
+        }
+      ],
+      "url"    : "https://www.swarmapp.com/whitetrefoil/checkin/5ec6338c9967340007bbfa99?s=1Y7TRiOoCPWvMgKsWluykSNcD94"
+    }
+  }
+}

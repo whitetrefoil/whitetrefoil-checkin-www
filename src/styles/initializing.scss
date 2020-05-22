@@ -1,0 +1,36 @@
+// region - Reset
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  line-height: 100%;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  list-style: none;
+
+  a {
+    &, &:hover, &:active, &:focus, &:visited {
+      color: initial;
+    }
+  }
+}
+
+// endregion
+
+html, body {
+  background-color: #111;
+  overflow: auto;
+  height: 100%;
+  color: #EEE;
+  font-size: 14px;
+}
+
+#app {
+  overflow: auto;
+  height: 100%;
+}

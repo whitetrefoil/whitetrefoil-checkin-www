@@ -1,0 +1,302 @@
+{
+  "code": 200,
+  "body": {
+    "code": 200,
+    "data": [
+      {
+        "id"      : "57a74220498e0c41fc96ecf7",
+        "name"    : "FamilyMart (全家)",
+        "address" : "制造局路 (陆家㙃路)",
+        "distance": 191
+      },
+      {
+        "id"      : "57b46e2a498e804941d38b4a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "局门路",
+        "distance": 685
+      },
+      {
+        "id"      : "50fa24d3e4b0451297ebf6ef",
+        "name"    : "FamilyMart (全家)",
+        "address" : "No. 527 Mengzi Rd (Quxi Rd.)",
+        "distance": 503
+      },
+      {
+        "id"      : "5115c1cae4b02a04b1cab01c",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Xizang Rd (Lujiabang Rd)",
+        "distance": 537
+      },
+      {
+        "id"      : "535f98d5498e8d24b9e36c26",
+        "name"    : "FamilyMart (全家)",
+        "address" : "丽园路506号",
+        "distance": 575
+      },
+      {
+        "id"      : "4d94526a74c8236a46f4b9fc",
+        "name"    : "FamilyMart (全家)",
+        "address" : "尚文路 | Shangwen Rd. (学前街 | Xueqian Str.)",
+        "distance": 614
+      },
+      {
+        "id"      : "4d6ae58f2eaba35d5e64300d",
+        "name"    : "FamilyMart (全家)",
+        "address" : "西藏南路1521号",
+        "distance": 608
+      },
+      {
+        "id"      : "4ec4ae3fbe7bd3e184e21ff0",
+        "name"    : "FamilyMart (全家)",
+        "address" : "鲁班路342号",
+        "distance": 1054
+      },
+      {
+        "id"      : "50f3cfade4b0edc99bb44812",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Xietu Rd (Jumen Rd)",
+        "distance": 636
+      },
+      {
+        "id"      : "4e807c52775be483e6f177fb",
+        "name"    : "FamilyMart (全家)",
+        "address" : "麗園路867號 (蒙自路), Xīntiāndì",
+        "distance": 987
+      },
+      {
+        "id"      : "4f162448e4b0960d0381feeb",
+        "name"    : "FamilyMart (全家)",
+        "address" : "西藏南路 (陆家浜路)",
+        "distance": 866
+      },
+      {
+        "id"      : "50dadd72e4b0b55bdafa1e51",
+        "name"    : "FamilyMart (全家)",
+        "address" : "中华路856号 (跨龙路)",
+        "distance": 944
+      },
+      {
+        "id"      : "57d7fd3d498ef0b18421fdc0",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Huangpu",
+        "distance": 1018
+      },
+      {
+        "id"      : "50de7048e4b0a2f201d0fd27",
+        "name"    : "FamilyMart (全家)",
+        "address" : "上海卢湾区鲁班路342号(近斜土路)",
+        "distance": 1051
+      },
+      {
+        "id"      : "4d5d5474775f8cfa7fd7c0e0",
+        "name"    : "FamilyMart (全家)",
+        "address" : "江阴街 | Jiangyin Str. (河南南路 | S. He'nan Rd.)",
+        "distance": 1087
+      },
+      {
+        "id"      : "5aa243fb916bc12e2ebbfa6a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "瑞金二路197号瑞金医院门诊大楼105室 (绍兴路)",
+        "distance": 1541
+      },
+      {
+        "id"      : "4fe15d7ae4b0b791d356bc4b",
+        "name"    : "FamilyMart (全家)",
+        "address" : "鲁班路",
+        "distance": 1316
+      },
+      {
+        "id"      : "50a21afde4b0702299e0e2d8",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Corporate Avenue 1",
+        "distance": 1880
+      },
+      {
+        "id"      : "4e7bb9c0fa76f6ef7dae9802",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Huangpu",
+        "distance": 1336
+      },
+      {
+        "id"      : "4e069d53d22d658532a1595a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Jianguo Rd | 建国路 (Chongqing S Rd | 重庆南路)",
+        "distance": 1528
+      },
+      {
+        "id"      : "50b54805e4b05cbf71c66150",
+        "name"    : "FamilyMart (全家)",
+        "address" : "上海市",
+        "distance": 1508
+      },
+      {
+        "id"      : "5da7395fe56cbb000870935e",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Huangpu",
+        "distance": 1904
+      },
+      {
+        "id"      : "4e7f34dc02d57f77e24fb6d4",
+        "name"    : "FamilyMart (全家)",
+        "address" : "388 Ruijin 2nd Rd | 瑞金二路388號 (Taikang Rd)",
+        "distance": 1903
+      },
+      {
+        "id"      : "4eccde9b5c5c3d499508bc16",
+        "name"    : "FamilyMart (全家)",
+        "address" : "瑞金二路130号",
+        "distance": 1612
+      },
+      {
+        "id"      : "505c7c0be4b033df3948697c",
+        "name"    : "FamilyMart (全家)",
+        "address" : "瑞金二路197号 (瑞金医院)",
+        "distance": 1630
+      },
+      {
+        "id"      : "4f0a7a85e4b0ca3a5e59818c",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Huangpu",
+        "distance": 1639
+      },
+      {
+        "id"      : "51dd744a498eeca5109a710f",
+        "name"    : "FamilyMart (全家)",
+        "address" : "405 Zhonghua Lu (Shachang Lu)",
+        "distance": 1702
+      },
+      {
+        "id"      : "5d6ea91586122600089e5983",
+        "name"    : "FamilyMart (全家)",
+        "address" : "187 Jinling M Rd | 金陵中路187号",
+        "distance": 1705
+      },
+      {
+        "id"      : "545f213e498ed0dddfd5628e",
+        "name"    : "FamilyMart (全家)",
+        "address" : "20 Yandang Rd",
+        "distance": 1767
+      },
+      {
+        "id"      : "4fbcef1fe4b0d84e503b7b6a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "618 Xujiahui Rd  | 徐家汇路618号 (B2/F SML Food Court | 日月光中美食广场), Dǎ pǔ qiáo",
+        "distance": 1790
+      },
+      {
+        "id"      : "4d9b0c809298b1f737094e38",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Dapu Rd | 打浦路 (Xietu Rd | 斜土路)",
+        "distance": 2015
+      },
+      {
+        "id"      : "51b982a7abd8a7ee773f1d6e",
+        "name"    : "FamilyMart (全家)",
+        "address" : "人民路885号 | 885 Renmin Rd. (at Qinglian St.)",
+        "distance": 2072
+      },
+      {
+        "id"      : "537f152b498e4aedc81f3c2d",
+        "name"    : "FamilyMart (全家)",
+        "address" : "淮海中路 300 号",
+        "distance": 2213
+      },
+      {
+        "id"      : "52a01ee211d2d386be6616ca",
+        "name"    : "FamilyMart (全家)",
+        "address" : "232 East Ninghai Road (South Guangxi Road)",
+        "distance": 2126
+      },
+      {
+        "id"      : "4eccdf280e61150350e8cf1b",
+        "name"    : "FamilyMart (全家)",
+        "address" : "瑞金二路130号 (永嘉路)",
+        "distance": 2157
+      },
+      {
+        "id"      : "520f871a11d22aa06be4107d",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Mercedes Arena",
+        "distance": 2210
+      },
+      {
+        "id"      : "513d7135e4b099fed23a6a26",
+        "name"    : "FamilyMart (全家)",
+        "address" : "",
+        "distance": 2235
+      },
+      {
+        "id"      : "50a098f9e4b01718b3d13717",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Huangpu",
+        "distance": 2258
+      },
+      {
+        "id"      : "4c84786cd34ca143be5d3f80",
+        "name"    : "FamilyMart (全家)",
+        "address" : "454 Jinling E Rd | 金陵东路454号, Běixīn qiáo",
+        "distance": 2280
+      },
+      {
+        "id"      : "53235338498ee054d42e4bef",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Huangpu",
+        "distance": 2356
+      },
+      {
+        "id"      : "4e56f81f483bc10efd8efb28",
+        "name"    : "FamilyMart (全家)",
+        "address" : "北京西路 | W. Beijing Rd. (常德路 | Changde Rd.)",
+        "distance": 4504
+      },
+      {
+        "id"      : "5152843ae4b0daa1a1ef944c",
+        "name"    : "FamilyMart (全家)",
+        "address" : "云南中路33号 (西藏中路)",
+        "distance": 2602
+      },
+      {
+        "id"      : "4e60c7f3aeb73603142be15a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "崂山路715号 (浦电路)",
+        "distance": 4133
+      },
+      {
+        "id"      : "5a3d036d9deb7d432fc1438a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "228 Yangshupu Rd | 杨树浦路228号 (Dalian Rd | 大连路), Yángpǔ",
+        "distance": 5708
+      },
+      {
+        "id"      : "51779194e4b0f88e9483f45c",
+        "name"    : "FamilyMart (全家)",
+        "address" : "定西路790號（定西路二店）",
+        "distance": 6029
+      },
+      {
+        "id"      : "56644cf0498e7af0f1124eda",
+        "name"    : "FamilyMart (全家)",
+        "address" : "Xinhui Rd | 新会路, Wǔ níng",
+        "distance": 5731
+      },
+      {
+        "id"      : "5312e4e9498ed0b3487df47f",
+        "name"    : "FamilyMart (全家)",
+        "address" : "岚皋路583弄56, 60号 | 60 Langao Rd",
+        "distance": 7956
+      },
+      {
+        "id"      : "4c2476e4db51952179f92b3a",
+        "name"    : "FamilyMart (全家)",
+        "address" : "2052 Zhongshan N Rd | 中山北路2052号 (Zhenping Rd | 镇坪路)",
+        "distance": 6990
+      },
+      {
+        "id"      : "4f7ad469e4b07aaa5cc80dad",
+        "name"    : "FamilyMart (全家)",
+        "address" : "330 Tianshan W Rd | 天山西路330号 (剑河路), Zhǎngníng",
+        "distance": 10886
+      }
+    ]
+  }
+}
