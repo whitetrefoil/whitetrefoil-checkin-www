@@ -42,6 +42,10 @@ gulp.task('devServer', async done => {
         secure : false,
       },
     ],
+    historyApiFallback: {
+      index  : `${config.baseUrl}/index.html`,
+      verbose: true,
+    },
     disableHostCheck: true,
     compress        : process.env.NODE_ENV !== 'development',
   };

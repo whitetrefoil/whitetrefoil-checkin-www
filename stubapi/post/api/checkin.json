@@ -1,9 +1,9 @@
 {
   "code": 201,
-  "data": {
+  "body": {
     "code": 201,
     "data": {
-      "isMayor": false,
+      "is_mayor": true,
       "score"  : 5,
       "reasons": [
         {

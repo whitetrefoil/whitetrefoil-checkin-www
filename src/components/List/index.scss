@@ -1,12 +1,50 @@
 :local {
+
+  @keyframes :local(loading) {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(33%);
+    }
+  }
+
   .item {
+    overflow: hidden;
     position: relative;
     padding: 1.2rem;
     border-bottom: 1px solid #222;
 
+    &.loading {
+      .loading-bg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-image: linear-gradient(90deg, rgba(119, 119, 119, 0) 66%, rgba(119, 119, 119, .5) 88%, rgba(119, 119, 119, 1) 100%);
+        animation: 1.5s linear infinite;
+        animation-name: loading;
+      }
+    }
+
+    &.success {
+      .success {
+        display: inline;
+      }
+    }
+
+    &.failed {
+      .failed {
+        display: inline;
+      }
+    }
+
     .title {
       display: flex;
     }
+
     .name {
       flex: 1 1 auto;
       font-size: 1.2rem;
@@ -14,6 +52,26 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    .success {
+      display: none;
+      margin-right: .5rem;
+      color: springgreen;
+      font-size: 1rem;
+    }
+
+    .failed {
+      display: none;
+      margin-right: .5rem;
+      color: orangered;
+      font-size: .8rem;
+    }
+
+    .mayor {
+      display: none;
+      margin-right: .5rem;
+      font-size: .8rem;
     }
 
     .last-checkin {
@@ -42,5 +100,15 @@
       font-size: .8rem;
       color: #AAAAAA;
     }
+
+    .loading-bg {
+      display: none;
+    }
+  }
+
+  .message {
+    line-height: 200%;
+    margin-top: 2rem;
+    text-align: center;
   }
 }

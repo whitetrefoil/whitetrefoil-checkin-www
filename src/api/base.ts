@@ -7,6 +7,14 @@ interface RawResponse<T> {
 }
 
 
+export class ApiError extends Error {
+  constructor(public code: number, message: string) {
+    super(message);
+    Object.setPrototypeOf(this, ApiError.prototype);
+  }
+}
+
+
 const api = ky.create({
   prefixUrl      : '/api',
   headers        : {
@@ -26,7 +34,7 @@ export const get = async <RES = unknown>(url: string, options?: Options): Promis
   }
   const json: RawResponse<RES> = await res.json();
   if (!res.ok || json.code == null || json.code > 299) {
-    throw new Error(json.data as string || res.statusText);
+    throw new ApiError(res.status, json.data as string || res.statusText);
   }
   return json.data as RES;
 };
@@ -38,7 +46,7 @@ export const post = async <RES = unknown>(url: string, options?: Options): Promi
   }
   const json: RawResponse<RES> = await res.json();
   if (!res.ok || json.code == null || json.code > 299) {
-    throw new Error(json.data as string || res.statusText);
+    throw new ApiError(res.status, json.data as string || res.statusText);
   }
   return json.data as RES;
 };

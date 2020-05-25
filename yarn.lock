@@ -1485,6 +1485,13 @@
   resolved "https://registry.npmjs.org/@types/prettier/-/prettier-2.0.1.tgz#b6e98083f13faa1e5231bfa3bdb1b0feff536b6d"
   integrity sha512-boy4xPNEtiw6N3abRhBi/e7hNvy3Tt8E9ZRAQrwAGzoCGZS/1wjo9KY7JHhnfnEsG5wSjDbymCozUM9a3ea7OQ==
 
+"@types/pretty-ms@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@types/pretty-ms/-/pretty-ms-5.0.1.tgz#f2f0d7be58caf8613d149053d446e0282ae11ff3"
+  integrity sha512-FFR4uj0p47Yq6JCrOt7DCaiUJIw7t9Vh7wwt3bF6qq99QRqjSH/doEGZsIIgZqhDmwjBObVBkrn0ICm1pY+mPg==
+  dependencies:
+    pretty-ms "*"
+
 "@types/prop-types@*":
   version "15.7.3"
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
@@ -8031,6 +8038,11 @@ parse-json@^5.0.0:
     json-parse-better-errors "^1.0.1"
     lines-and-columns "^1.1.6"
 
+parse-ms@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/parse-ms/-/parse-ms-2.1.0.tgz#348565a753d4391fa524029956b172cb7753097d"
+  integrity sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==
+
 parse-node-version@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/parse-node-version/-/parse-node-version-1.0.1.tgz#e2b5dbede00e7fa9bc363607f53327e8b073189b"
@@ -8728,6 +8740,13 @@ pretty-hrtime@^1.0.0:
   version "1.0.3"
   resolved "https://registry.npmjs.org/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
+
+pretty-ms@*, pretty-ms@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/pretty-ms/-/pretty-ms-7.0.0.tgz#45781273110caf35f55cab21a8a9bd403a233dc0"
+  integrity sha512-J3aPWiC5e9ZeZFuSeBraGxSkGMOvulSWsxDByOcbD1Pr75YL3LSNIKIb52WXbCLE1sS5s4inBBbryjF4Y05Ceg==
+  dependencies:
+    parse-ms "^2.1.0"
 
 private@^0.1.8:
   version "0.1.8"

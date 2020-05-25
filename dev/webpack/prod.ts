@@ -29,7 +29,7 @@ const prodConfig: webpack.Configuration = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.es6', '.js', '.json'],
-    alias      : {
+    alias     : {
       'react'               : 'preact/compat',
       'react-dom/test-utils': 'preact/test-utils',
       'react-dom'           : 'preact/compat',
@@ -244,7 +244,7 @@ const prodConfig: webpack.Configuration = {
       minify        : false,
       inject        : 'body',
       chunksSortMode: 'manual',
-      baseUrl       : `${config.baseUrl}/`,
+      base          : `${config.baseUrl}/`,
     }),
   ],
 };

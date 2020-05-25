@@ -6,8 +6,8 @@
       "token": "LOCAL_TOKEN",
       "user" : {
         "id"       : "9197137",
-        "firstName": "Gino.F",
-        "lastName" : "Zhang",
+        "first_name": "Gino.F",
+        "last_name" : "Zhang",
         "photo"    : {
           "prefix": "https:\\/\\/fastly.4sqi.net\\/img\\/user\\/",
           "suffix": "\/KTS5DWCSJBOBHRG3.jpg"

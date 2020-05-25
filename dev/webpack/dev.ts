@@ -225,7 +225,7 @@ const devConfig: webpack.Configuration = {
       minify        : false,
       inject        : 'body',
       chunksSortMode: 'manual',
-      baseUrl       : `${config.baseUrl}/`,
+      base          : `${config.baseUrl}/`,
     }),
   ],
 };
