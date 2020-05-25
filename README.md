@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.3
+
+* Fix missing token when checkin.
+
 ### v0.1.2
 
 * Fix an auth related bug.
