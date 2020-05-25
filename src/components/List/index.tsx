@@ -44,7 +44,7 @@ const List: FC<{
     if (geo == null) {
       return new Promise((res, rej) => rej(new Error('shouldn\'t reach')));
     }
-    const result = await addCheckin(venue.id, geo);
+    const result = await addCheckin(token, venue.id, geo);
     setCheckin(orig => ({
       ...orig,
       [venue.id]: result,
