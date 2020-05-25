@@ -1,6 +1,7 @@
 {
-  "name": "whitetrefoil-checkin-www",
-  "version": "0.1.0",
+  "name": "@whitetrefoil/checkin-www",
+  "version": "0.1.1",
+  "private": true,
   "author": {
     "name": "WhiteTrefoil",
     "email": "whitetrefoil@gmail.com"
