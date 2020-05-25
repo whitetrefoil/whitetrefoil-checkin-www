@@ -16,8 +16,12 @@ interface RawRes {
 
 export type GetUserDetailResponse = User;
 
-export const getUserDetail = async(): Promise<GetUserDetailResponse> => {
-  return get<RawRes>('users').then(user => ({
+export const getUserDetail = async(token: string): Promise<GetUserDetailResponse> => {
+  return get<RawRes>('users', {
+    headers: {
+      'x-token': token,
+    },
+  }).then(user => ({
     id       : user.id,
     firstName: user.first_name,
     lastName : user.last_name,

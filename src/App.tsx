@@ -45,7 +45,7 @@ const App: FC = () => {
     if (token == null || user != null) {
       return;
     }
-    getUserDetail()
+    getUserDetail(token)
       .then(u => setUser(u))
       .catch(e => {
         if (e instanceof ApiError && e.code === 401) {
