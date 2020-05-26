@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.8
+
+* Use pure black as BG.
+
 ### v0.1.7
 
 * Add icon.
