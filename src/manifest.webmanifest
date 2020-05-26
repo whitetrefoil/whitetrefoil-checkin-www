@@ -5,8 +5,5 @@
   "background_color": "#111111",
   "theme_color"     : "#111111",
   "display"         : "fullscreen",
-  "start_url"       : "/",
-  "serviceworker"   : {
-    "src": "./service-worker.js"
-  }
+  "start_url"       : "/"
 }

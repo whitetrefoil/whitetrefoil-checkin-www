@@ -2,12 +2,25 @@ import getLogger from '@whitetrefoil/log-utils';
 import './styles/initializing.scss';
 
 
-const { debug, error } = getLogger(`/src/${__filename.split('?')[0]}`);
+const { debug, info, warn, error } = getLogger(`/src/${__filename.split('?')[0]}`);
+
+
+function registerSW() {
+  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in window.navigator) {
+    window.addEventListener('load', () => {
+      window.navigator.serviceWorker.register('/service-worker.js')
+        .then(
+          reg => info('SW registered:', reg),
+          err => warn('SW registration failed:', err),
+        );
+    });
+  }
+}
 
 
 async function bootstrap() {
 
-  // registerSW();
+  registerSW();
 
   const render = await import(/*webpackChunkName:"Root"*/'./Root').then(m => m.render);
 
