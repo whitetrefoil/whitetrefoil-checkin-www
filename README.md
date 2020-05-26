@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.5
+
+* Better manifest file.
+
 ### v0.1.4
 
 * Add web manifest & workbox.
