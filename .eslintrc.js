@@ -285,35 +285,35 @@ module.exports = {
   },
 
   overrides: [
-    {
-      files: ['**/*.js', '**/*.es6'],
-
-      parser: 'babel-eslint',
-
-      plugins: ['babel'],
-
-      // eslint-plugin-babel v5.3.0
-      // @see https://github.com/babel/eslint-plugin-babel
-      rules: {
-        'new-cap'                    : [0],
-        'babel/new-cap'              : [2, { capIsNew: false, newIsCap: true }],
-        'camelcase'                  : [0],
-        'babel/camelcase'            : [2, { properties: 'always' }],
-        'no-invalid-this'            : [0],
-        // Disable this because of AngularJS's `controllerAs`.
-        'babel/no-invalid-this'      : [0],
-        'object-curly-spacing'       : [0],
-        'babel/object-curly-spacing' : [2, 'always'],
-        'quotes'                     : [0],
-        'babel/quotes'               : [2, 'single', 'avoid-escape'],
-        'semi'                       : [0],
-        'babel/semi'                 : [2, 'always'],
-        'no-unused-expressions'      : [0],
-        'babel/no-unused-expressions': [2],
-        'valid-typeof'               : [0],
-        'babel/valid-typeof'         : [2],
-      },
-    },
+    // {
+    //   files: ['**/*.js', '**/*.es6'],
+    //
+    //   parser: 'babel-eslint',
+    //
+    //   plugins: ['babel'],
+    //
+    //   // eslint-plugin-babel v5.3.0
+    //   // @see https://github.com/babel/eslint-plugin-babel
+    //   rules: {
+    //     'new-cap'                    : [0],
+    //     'babel/new-cap'              : [2, { capIsNew: false, newIsCap: true }],
+    //     'camelcase'                  : [0],
+    //     'babel/camelcase'            : [2, { properties: 'always' }],
+    //     'no-invalid-this'            : [0],
+    //     // Disable this because of AngularJS's `controllerAs`.
+    //     'babel/no-invalid-this'      : [0],
+    //     'object-curly-spacing'       : [0],
+    //     'babel/object-curly-spacing' : [2, 'always'],
+    //     'quotes'                     : [0],
+    //     'babel/quotes'               : [2, 'single', 'avoid-escape'],
+    //     'semi'                       : [0],
+    //     'babel/semi'                 : [2, 'always'],
+    //     'no-unused-expressions'      : [0],
+    //     'babel/no-unused-expressions': [2],
+    //     'valid-typeof'               : [0],
+    //     'babel/valid-typeof'         : [2],
+    //   },
+    // },
 
     {
       files: ['**/*.ts', '**/*.tsx'],
@@ -548,7 +548,7 @@ module.exports = {
       rules: {
         'react/prop-types'           : [0],
         'react-hooks/rules-of-hooks' : [2],
-        'react-hooks/exhaustive-deps': [1],
+        'react-hooks/exhaustive-deps': [2],
       },
     },
   ],

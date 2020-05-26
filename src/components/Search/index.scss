@@ -1,0 +1,52 @@
+:local {
+  .search-bar {
+    position: relative;
+    height: 3rem;
+    border-bottom: 1px solid #222222;
+
+    .text {
+      line-height: 3rem;
+      color: #FFFFFF;
+      font-size: 1.3rem;
+      margin-left: 1rem;
+      font-family: fantasy;
+      font-weight: bolder;
+      font-style: oblique;
+    }
+
+    .clear {
+      width: 2rem;
+      height: 2rem;
+      line-height: 1.8rem;
+      margin: .5rem;
+      float: right;
+      border: 2px solid white;
+      border-radius: .2rem;
+      overflow: hidden;
+      font-size: 1.5rem;
+      text-align: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+  }
+
+  .cancel-button {
+    position: fixed;
+    left: calc(50% - 2rem);
+    bottom: 1.5rem;
+    font-size: 2rem;
+    width: 4rem;
+    height: 4rem;
+    line-height: 3.6rem;
+    text-align: center;
+    background: #DDDDDD;
+    border: .2rem solid white;
+    border-radius: 4rem;
+    overflow: hidden;
+  }
+
+}
