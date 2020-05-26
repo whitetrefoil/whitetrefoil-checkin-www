@@ -374,3 +374,5 @@ dist
 dist/
 ~*
 test_results/
+html/
+html.tar.xz

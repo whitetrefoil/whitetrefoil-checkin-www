@@ -68,14 +68,7 @@ const attributesList = [
     attribute: 'href',
     type     : 'src',
     filter   : (tag: string, attribute: string, attributes: Record<string, string>) => {
-      if (!/(?:stylesheet|manifest)/i.test(attributes.rel)) {
-        return false;
-      }
-
-      if (
-        attributes.type &&
-        attributes.type.trim().toLowerCase() !== 'text/css'
-      ) {
+      if (!/(?:stylesheet|manifest|icon)/i.test(attributes.rel)) {
         return false;
       }
 

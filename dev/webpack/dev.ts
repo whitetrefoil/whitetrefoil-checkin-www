@@ -163,6 +163,17 @@ const devConfig: webpack.Configuration = {
         test : /\.(?:png|jpe?g|gif|svg|webp|webm|woff2?|ttf|eot|ico)(?:\?.*)?$/,
         oneOf: [
           {
+            test: /icon\.c\.png$/,
+            use : [
+              {
+                loader : 'file-loader',
+                options: {
+                  name: '[path][name].[ext]',
+                },
+              },
+            ],
+          },
+          {
             test: /\.svg(?:\?.*)?$/,
             use : [
               {

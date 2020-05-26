@@ -1,9 +1,14 @@
 {
   "short_name"      : "Bee",
   "name"            : "WhiteTrefoil's Check-in",
-  "icons"           : [],
+  "icons"           : [
+    {
+      "sizes": "144x144",
+      "src"  : "/icon.png"
+    }
+  ],
   "background_color": "#111111",
   "theme_color"     : "#111111",
-  "display"         : "fullscreen",
+  "display"         : "standalone",
   "start_url"       : "/"
 }
