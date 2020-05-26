@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.4
+
+* Add web manifest & workbox.
+
 ### v0.1.3
 
 * Fix missing token when checkin.
