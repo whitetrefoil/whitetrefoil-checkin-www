@@ -4,5 +4,9 @@
   "icons"           : [],
   "background_color": "#111111",
   "theme_color"     : "#111111",
-  "display"         : "fullscreen"
+  "display"         : "fullscreen",
+  "start_url"       : "/",
+  "serviceworker"   : {
+    "src": "./service-worker.js"
+  }
 }
