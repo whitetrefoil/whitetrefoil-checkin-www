@@ -6,8 +6,9 @@ import * as path                  from 'path';
 import { TsconfigPathsPlugin }    from 'tsconfig-paths-webpack-plugin';
 import * as webpack               from 'webpack';
 import { BundleAnalyzerPlugin }   from 'webpack-bundle-analyzer';
+import WorkboxPlugin              from 'workbox-webpack-plugin';
 import config                     from '../config';
-import htmlLoaderMinimizeConfig   from './html-loader-minimize-config';
+import htmlLoaderOptions          from './html-loader-options';
 
 
 const SIZE_14KB = 14336;
@@ -57,10 +58,7 @@ const prodConfig: webpack.Configuration = {
         use    : [
           {
             loader : 'html-loader',
-            options: {
-              attributes: true,
-              minimize  : htmlLoaderMinimizeConfig,
-            },
+            options: htmlLoaderOptions,
           },
         ],
       },
@@ -132,6 +130,17 @@ const prodConfig: webpack.Configuration = {
                 includePaths: [config.source('styles')],
               },
               sourceMap  : true,
+            },
+          },
+        ],
+      },
+      {
+        test: /manifest\.webmanifest$/,
+        use : [
+          {
+            loader : 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
             },
           },
         ],
@@ -220,6 +229,11 @@ const prodConfig: webpack.Configuration = {
       useTypescriptIncrementalApi: false,
     }),
 
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting : true,
+    }),
+
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.BASE_URL': JSON.stringify(config.baseUrl),
@@ -239,7 +253,7 @@ const prodConfig: webpack.Configuration = {
 
     new HtmlWebpackPlugin({
       filename      : 'index.html',
-      template      : '!!html-loader!./src/index.html',
+      template      : './index.html',
       hash          : false,
       minify        : false,
       inject        : 'body',

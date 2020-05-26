@@ -4,8 +4,9 @@ import HtmlWebpackPlugin          from 'html-webpack-plugin';
 import * as path                  from 'path';
 import { TsconfigPathsPlugin }    from 'tsconfig-paths-webpack-plugin';
 import * as webpack               from 'webpack';
+import WorkboxPlugin              from 'workbox-webpack-plugin';
 import config                     from '../config';
-import htmlLoaderMinimizeConfig   from './html-loader-minimize-config';
+import htmlLoaderOptions          from './html-loader-options';
 
 
 const SIZE_14KB = 14336;
@@ -68,10 +69,7 @@ const devConfig: webpack.Configuration = {
         use    : [
           {
             loader : 'html-loader',
-            options: {
-              attributes: true,
-              minimize  : htmlLoaderMinimizeConfig,
-            },
+            options: htmlLoaderOptions,
           },
         ],
       },
@@ -151,6 +149,17 @@ const devConfig: webpack.Configuration = {
         ],
       },
       {
+        test: /manifest\.webmanifest$/,
+        use : [
+          {
+            loader : 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+            },
+          },
+        ],
+      },
+      {
         test : /\.(?:png|jpe?g|gif|svg|webp|webm|woff2?|ttf|eot|ico)(?:\?.*)?$/,
         oneOf: [
           {
@@ -213,6 +222,11 @@ const devConfig: webpack.Configuration = {
       useTypescriptIncrementalApi: false,
     }),
 
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting : true,
+    }),
+
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.BASE_URL': JSON.stringify(config.baseUrl),
@@ -220,7 +234,7 @@ const devConfig: webpack.Configuration = {
 
     new HtmlWebpackPlugin({
       filename      : 'index.html',
-      template      : '!!html-loader!./src/index.html',
+      template      : './index.html',
       hash          : false,
       minify        : false,
       inject        : 'body',

@@ -42,4 +42,52 @@ const htmlLoaderMinimizeConfig: Options = {
   useShortDoctype            : true,
 };
 
-export default htmlLoaderMinimizeConfig;
+const attributesList = [
+  {
+    tag      : 'img',
+    attribute: 'src',
+    type     : 'src',
+  },
+  {
+    tag      : 'img',
+    attribute: 'srcset',
+    type     : 'srcset',
+  },
+  {
+    tag      : 'img',
+    attribute: 'data-src',
+    type     : 'src',
+  },
+  {
+    tag      : 'img',
+    attribute: 'data-srcset',
+    type     : 'srcset',
+  },
+  {
+    tag      : 'link',
+    attribute: 'href',
+    type     : 'src',
+    filter   : (tag: string, attribute: string, attributes: Record<string, string>) => {
+      if (!/(?:stylesheet|manifest)/i.test(attributes.rel)) {
+        return false;
+      }
+
+      if (
+        attributes.type &&
+        attributes.type.trim().toLowerCase() !== 'text/css'
+      ) {
+        return false;
+      }
+
+      return true;
+    },
+  },
+];
+
+
+export default {
+  minimize  : htmlLoaderMinimizeConfig,
+  attributes: {
+    list: attributesList,
+  },
+};
