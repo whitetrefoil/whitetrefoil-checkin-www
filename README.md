@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.7
+
+* Add icon.
+
 ### v0.1.6
 
 * Change the way to register sw.
