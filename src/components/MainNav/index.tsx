@@ -9,14 +9,12 @@ const MainNav: FC<{
   user: User|null;
 }> = ({
   user,
-}) => {
-  return (
-    <nav className={css.root}>
-      <a href="#" className={css.title} onClick={prevented}>Simple Check-in</a>
-      <Avatar user={user}/>
-    </nav>
-  );
-};
+}) => (
+  <nav className={css.root}>
+    <a href="#" className={css.title} onClick={prevented}>Click to Check-in</a>
+    <Avatar user={user}/>
+  </nav>
+);
 
 
 export default memo(MainNav);
