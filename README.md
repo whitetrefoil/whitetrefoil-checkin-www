@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.9
+
+* Add search.
+
 ### v0.1.8
 
 * Use pure black as BG.
