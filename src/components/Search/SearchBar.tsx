@@ -37,7 +37,7 @@ const SearchBar: FC<{
   return (
     <form action="#" onSubmit={onSubmit} onReset={onReset} className={css.searchBar}>
       <input ref={inputRef} type="text" className={css.text} value={input} onChange={onInputChange}/>
-      <button type="reset" className={css.clear}>✘</button>
+      <button type="reset" className={css.clear}/>
     </form>
   );
 };
