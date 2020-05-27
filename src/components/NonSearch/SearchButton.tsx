@@ -6,7 +6,7 @@ const SearchButton: FC<{
   onClick?(): unknown;
 }> = ({
   onClick,
-}) => <div className={css.searchButton} onClick={onClick}>🔍</div>;
+}) => <div className={css.searchButton} onClick={onClick}><span className={css.icon}>⚲</span></div>;
 
 
 export default memo(SearchButton);

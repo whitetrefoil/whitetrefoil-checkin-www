@@ -6,7 +6,7 @@ const CancelButton: FC<{
   onClick?(): unknown;
 }> = ({
   onClick,
-}) => <div className={css.cancelButton} onClick={onClick}>🔍</div>;
+}) => <div className={css.cancelButton} onClick={onClick}>🔙</div>;
 
 
 export default memo(CancelButton);

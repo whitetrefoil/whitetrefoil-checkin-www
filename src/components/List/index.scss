@@ -1,3 +1,5 @@
+@use "../../styles/vars";
+
 :local {
 
   @keyframes :local(loading) {
@@ -13,7 +15,7 @@
     overflow: hidden;
     position: relative;
     padding: 1.2rem;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid vars.$border-color;
 
     &.loading {
       .loading-bg {
@@ -52,20 +54,20 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      color: #FFFFFF;
+      color: vars.$primary;
     }
 
     .success {
       display: none;
       margin-right: .5rem;
-      color: springgreen;
+      color: vars.$accent;
       font-size: 1rem;
     }
 
     .failed {
       display: none;
       margin-right: .5rem;
-      color: orangered;
+      color: vars.$error;
       font-size: .8rem;
     }
 
@@ -79,7 +81,7 @@
       flex: 0 0 4rem;
       text-align: right;
       font-size: .8rem;
-      color: #777777;
+      color: vars.$dimmer;
     }
 
     .location {
@@ -89,7 +91,7 @@
     .address {
       flex: 1 1 auto;
       font-size: .9rem;
-      color: #777777;
+      color: vars.$dimmer;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -99,7 +101,7 @@
       flex: 0 0 3rem;
       text-align: left;
       font-size: .8rem;
-      color: #AAAAAA;
+      color: vars.$dim;
     }
 
     .loading-bg {

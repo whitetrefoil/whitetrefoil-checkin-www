@@ -1,3 +1,5 @@
+@use "vars";
+
 // region - Reset
 
 * {
@@ -23,10 +25,10 @@
 // endregion
 
 html, body {
-  background-color: #000000;
+  background-color: vars.$bg;
   overflow: auto;
   height: 100%;
-  color: #EEEEEE;
+  color: vars.$primary;
   font-size: 14px;
 }
 
