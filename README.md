@@ -6,6 +6,12 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.2.1
+
+* Use cachebuster for manifest file.
+* Hide back button in non-fullscreen mode.
+* Close window if no history.
+
 ### v0.2.0
 
 * Use bootstrap-icons.
