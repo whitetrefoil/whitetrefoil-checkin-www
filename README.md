@@ -6,9 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
-### v0.1.10
+### v0.2.0
 
 * Use bootstrap-icons.
+* Migrate to redux.
 
 ### v0.1.9
 
