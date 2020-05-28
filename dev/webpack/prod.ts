@@ -140,7 +140,7 @@ const prodConfig: webpack.Configuration = {
           {
             loader : 'file-loader',
             options: {
-              name: '[path][name].[ext]',
+              name: '[hash].[ext]',
             },
           },
         ],
