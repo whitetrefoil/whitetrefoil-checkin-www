@@ -14,7 +14,13 @@ const Toolbar: FC = () => {
     return () => window.document.body.classList.remove(css.hasToolbar);
   }, []);
 
-  const onBackClick = () => window.history.back();
+  const onBackClick = () => {
+    if (window.history.length <= 1) {
+      window.close();
+    } else {
+      window.history.back();
+    }
+  };
 
   const onSearch = () => goToSearch(true);
 
@@ -23,7 +29,7 @@ const Toolbar: FC = () => {
     return <Redirect push to="/search"/>;
   }
 
-  const isFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+  const isFullscreen = process.env.NODE_ENV === 'development' || window.matchMedia('(display-mode: fullscreen)').matches;
 
   return (
     <div className={css.root}>
