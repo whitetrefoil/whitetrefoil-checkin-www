@@ -3,7 +3,7 @@ import { call, fork, put, select, take, takeLatest } from 'redux-saga/effects';
 import { ActionType }                                from 'typesafe-actions';
 import { checkLogin }                                from '~/api/check-login';
 import { getUserDetail }                             from '~/api/get-user.detail';
-import { updateStorage }                             from '../../utils/in-storage';
+import { updateStorage }                             from '~/utils/in-storage';
 import * as A                                        from './actions';
 import * as $                                        from './selectors';
 
