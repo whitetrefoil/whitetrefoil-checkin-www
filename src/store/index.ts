@@ -2,9 +2,11 @@ import createSagaMiddleware, { Saga }                    from '@redux-saga/core'
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools }                           from 'redux-devtools-extension';
 import { fork }                                          from 'redux-saga/effects';
-import { getInStorage }                                  from '~/utils/in-storage';
 import list                                              from '~/features/list/reducer';
 import * as listSagas                                    from '~/features/list/sagas';
+import search                                            from '~/features/search/reducer';
+import * as searchSagas                                  from '~/features/search/sagas';
+import { getInStorage }                                  from '~/utils/in-storage';
 import geo                                               from './geo/reducer';
 import * as geoSagas                                     from './geo/sagas';
 import history                                           from './history/reducer';
@@ -18,6 +20,7 @@ export const rootReducer = combineReducers({
   history,
   session,
   list,
+  search,
 });
 
 function *runSagas(sagas: Record<string, Saga>) {
@@ -31,6 +34,7 @@ function *rootWatch() {
   yield *runSagas(historySagas);
   yield *runSagas(sessionSagas);
   yield *runSagas(listSagas);
+  yield *runSagas(searchSagas);
 }
 
 

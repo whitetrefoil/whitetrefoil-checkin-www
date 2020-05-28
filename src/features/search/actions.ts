@@ -4,16 +4,18 @@ import { Geo }                                     from '~/interfaces/geo';
 import { Venue }                                   from '~/interfaces/venue';
 
 
+export const SEARCH = createAction('search/INPUT')<string>();
+
 export const FETCH_VENUES = createAsyncAction(
-  'list/FETCH_VENUES_R',
-  'list/FETCH_VENUES_S',
-  'list/FETCH_VENUES_F',
-)<Geo, Venue[], Error>();
+  'search/FETCH_VENUES_R',
+  'search/FETCH_VENUES_S',
+  'search/FETCH_VENUES_F',
+)<NoMeta<[string, Geo]>, Venue[], Error>();
 
 export const CHECKIN = createAsyncAction(
-  'list/CHECKIN_R',
-  'list/CHECKIN_S',
-  'list/CHECKIN_F',
+  'search/CHECKIN_R',
+  'search/CHECKIN_S',
+  'search/CHECKIN_F',
 )<NoMeta<[string, Geo]>, NoMeta<[string, Checkin]>, NoMeta<[string, Error]>>();
 
-export const RESET = createAction('list/RESET')<void>();
+export const RESET = createAction('search/RESET')<void>();

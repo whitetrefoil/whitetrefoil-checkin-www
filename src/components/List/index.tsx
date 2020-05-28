@@ -1,8 +1,9 @@
 import React, { FC, memo } from 'react';
+import { RS }              from '~/hooks/use-root-selector';
 import { useVal, ValOf }   from '~/hooks/use-val';
+import { Checkin }         from '~/interfaces/checkin';
 import { Geo }             from '~/interfaces/geo';
 import { Venue }           from '~/interfaces/venue';
-import { $$checkinById }   from '~/features/list/selectors';
 import * as css            from './index.scss';
 import ListItem            from './ListItem';
 
@@ -11,12 +12,14 @@ const List: FC<{
   $geo: ValOf<Geo|nil>;
   $history: ValOf<Record<string, number>|nil>;
   $venues: ValOf<Loadable<Venue[]>>;
+  $$checkinById(venueId: string): RS<Saveable<Checkin>|nil>;
   onItemClick(venue: Venue): unknown;
   onAuthError(): unknown;
 }> = ({
   $geo,
   $history,
   $venues,
+  $$checkinById,
   onItemClick,
   onAuthError,
 }) => {

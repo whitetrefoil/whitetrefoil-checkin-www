@@ -1,31 +1,30 @@
-import { useEffect }                                 from 'preact/hooks';
-import React, { FC, Fragment, memo }                 from 'react';
-import { useDispatch }                               from 'react-redux';
-import { Redirect }                                  from 'react-router';
-import List                                          from '~/components/List';
-import MainNav                                       from '~/components/MainNav';
-import { useRS }                                     from '~/hooks/use-root-selector';
-import { GET }                                       from '~/store/geo/actions';
-import { $geo }                                      from '~/store/geo/selectors';
-import { $history }                                  from '~/store/history/selectors';
-import { AUTH_ERROR }                                from '~/store/session/actions';
-import { $user }                                     from '~/store/session/selectors';
-import { Venue }                                     from '../../interfaces/venue';
-import { CHECKIN, FETCH_VENUES, GOTO_SEARCH, RESET } from './actions';
-import SearchButton                                  from './SearchButton';
-import { $isGotoSearch, $venues }                    from './selectors';
+import { useEffect }                    from 'preact/hooks';
+import React, { FC, memo }              from 'react';
+import { useDispatch }                  from 'react-redux';
+import List                             from '~/components/List';
+import MainNav                          from '~/components/MainNav';
+import { useRS }                        from '~/hooks/use-root-selector';
+import { useTitle }                     from '~/hooks/use-title';
+import { Venue }                        from '~/interfaces/venue';
+import { GET }                          from '~/store/geo/actions';
+import { $geo }                         from '~/store/geo/selectors';
+import { $history }                     from '~/store/history/selectors';
+import { AUTH_ERROR }                   from '~/store/session/actions';
+import { $user }                        from '~/store/session/selectors';
+import { CHECKIN, FETCH_VENUES, RESET } from './actions';
+import { $$checkinById, $venues }       from './selectors';
 // import * as css from './index.scss';
 
 
 const ListFeature: FC = () => {
 
+  useTitle('Nearest');
+
   const dispatch = useDispatch();
 
   const geo = useRS($geo);
-  const isGotoSearch = useRS($isGotoSearch);
 
   const onAuthError = () => dispatch(AUTH_ERROR());
-  const onSearchClick = () => dispatch(GOTO_SEARCH());
 
   // Cleanup when leave.
   useEffect(() => () => dispatch(RESET()), [dispatch]);
@@ -50,24 +49,19 @@ const ListFeature: FC = () => {
     dispatch(CHECKIN.request([id, geo]));
   };
 
-  if (isGotoSearch) {
-    return <Redirect to="/search"/>;
-  }
-
   return (
-    <Fragment>
+    <div className="feature">
       <MainNav $user={$user}/>
 
       <List
         $geo={$geo}
         $history={$history}
         $venues={$venues}
+        $$checkinById={$$checkinById}
         onItemClick={onItemClick}
         onAuthError={onAuthError}
       />
-
-      <SearchButton onClick={onSearchClick}/>
-    </Fragment>
+    </div>
   );
 };
 

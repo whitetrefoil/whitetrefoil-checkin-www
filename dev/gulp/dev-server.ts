@@ -14,27 +14,28 @@ gulp.task('devServer', async done => {
     : prodConfig;
 
   const devServerOptions: WebpackDevServer.Configuration = {
-    host            : '0.0.0.0',
-    port            : config.serverPort,
-    publicPath      : `${config.baseUrl}/`,
-    contentBase     : [
+    host              : '0.0.0.0',
+    port              : config.serverPort,
+    publicPath        : `${config.baseUrl}/`,
+    contentBase       : [
       config.absOutputByEnv(''),
       config.absRoot('stubapi/static'),
       config.absRoot(''),
     ],
-    hot             : true,
-    noInfo          : false,
-    index           : 'index.html',
-    injectClient    : true,
-    injectHot       : true,
+    hot               : true,
+    noInfo            : false,
+    index             : 'index.html',
+    injectClient      : true,
+    injectHot         : true,
     // Base on 'errors-only' + filter ts-loader transpileOnly related warnings.
     // See https://github.com/webpack/webpack/blob/30882ca548625e6d1e54323ff5c61795c6ab4bda/lib/Stats.js#L1405
-    stats           : {
+    stats             : {
       all           : false,
       errors        : true,
       moduleTrace   : true,
       warningsFilter: /export .* was not found in/,
     },
+    https             : true,
     proxy             : [
       {
         context: config.apiPrefixes.map((p: string): string => `${p}**`),
@@ -46,8 +47,8 @@ gulp.task('devServer', async done => {
       index  : `${config.baseUrl}/index.html`,
       verbose: true,
     },
-    disableHostCheck: true,
-    compress        : process.env.NODE_ENV !== 'development',
+    disableHostCheck  : true,
+    compress          : process.env.NODE_ENV !== 'development',
   };
 
   WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);

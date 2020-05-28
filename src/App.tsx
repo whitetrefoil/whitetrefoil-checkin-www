@@ -3,7 +3,9 @@ import React, { FC, memo }         from 'react';
 import { useDispatch }             from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router';
 import Login                       from './components/Login';
+import Toolbar                     from './components/Toolbar/index';
 import ListFeature                 from './features/list';
+import SearchFeature               from './features/search/index';
 import { useRS }                   from './hooks/use-root-selector';
 import { FETCH_USER }              from './store/session/actions';
 import { $token, $user }           from './store/session/selectors';
@@ -37,7 +39,7 @@ const App: FC = () => {
     () => token == null ? <Login/> :
       <Switch>
         <Route path="/" exact component={ListFeature}/>
-        {/*<Route path="/search" exact component={SearchFeature}/>*/}
+        <Route path="/search" exact component={SearchFeature}/>
         <Redirect to="/"/>
       </Switch>
     ,
@@ -47,6 +49,7 @@ const App: FC = () => {
   return (
     <div id="app">
       {contentElem}
+      <Toolbar/>
     </div>
   );
 };

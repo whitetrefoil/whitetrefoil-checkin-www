@@ -1,0 +1,43 @@
+@use "../../styles/vars" as *;
+
+:local {
+  $-height: 3rem;
+
+  body.has-toolbar {
+    padding-bottom: $-height;
+  }
+
+  .root {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: $-height;
+    background: no-repeat center center linear-gradient(to top, rgba($bg, 1) 0%, rgba($bg, 1) 33.3%, rgba($bg, .5) 66.6%, rgba($bg, 0) 100%);
+    //background-color: $bg;
+
+    .back, .search {
+      width: $-height * 2;
+      height: $-height;
+      line-height: $-height;
+      position: absolute;
+      top: 0;
+      text-align: center;
+      color: $primary;
+      text-indent: -999999em;
+      background-size: $-height * 0.5;
+    }
+
+    .back {
+      left: 30%;
+      margin-left: $-height * -1;
+      background: no-repeat center center url("~bootstrap-icons/icons/chevron-left.svg?fill=#{$primary}");
+    }
+
+    .search {
+      right: 30%;
+      margin-right: $-height * -1;
+      background: no-repeat center center url("~bootstrap-icons/icons/search.svg?fill=#{$primary}");
+    }
+  }
+}

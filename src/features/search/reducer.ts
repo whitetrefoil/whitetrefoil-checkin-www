@@ -1,7 +1,7 @@
 import omit                          from 'object.omit';
 import { ActionType, createReducer } from 'typesafe-actions';
-import { Venue }                     from '~/interfaces/venue';
 import { Checkin }                   from '~/interfaces/checkin';
+import { Venue }                     from '~/interfaces/venue';
 import * as A                        from './actions';
 
 
@@ -9,6 +9,7 @@ type Action = ActionType<typeof A>;
 
 
 export interface State {
+  searchBy?: string;
   venues: Loadable<Venue[]>;
   checkins: Record<string, Saveable<Checkin>>;
 }
@@ -23,6 +24,11 @@ const init = (): State => ({
 export default createReducer<State, Action>(init())
 
   .handleAction(A.RESET, () => init())
+
+  .handleAction(A.SEARCH, (s, { payload: searchBy }) => ({
+    ...s,
+    searchBy,
+  }))
 
   .handleAction(A.FETCH_VENUES.request, s => ({
     ...s,

@@ -12,7 +12,7 @@ const MainNav: FC<{
   $user,
 }) => (
   <nav className={css.root}>
-    <a href="#" className={css.title} onClick={prevented}>Click to Check-in</a>
+    <a href="#" className={css.title} onClick={prevented}>Simple Check-in</a>
     <Avatar $user={$user}/>
   </nav>
 );

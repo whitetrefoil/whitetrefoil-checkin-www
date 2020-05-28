@@ -1,35 +1,70 @@
-import { useMemo, useState }         from 'preact/hooks';
-import React, { FC, Fragment, memo } from 'react';
-import List                          from '../List';
-import CancelButton                  from './CancelButton';
-import SearchBar                     from './SearchBar';
+import { useCallback, useEffect }               from 'preact/hooks';
+import React, { FC, memo }                      from 'react';
+import { useDispatch }                          from 'react-redux';
+import List                                     from '~/components/List';
+import { useRS }                                from '~/hooks/use-root-selector';
+import { useTitle }                             from '~/hooks/use-title';
+import { Venue }                                from '~/interfaces/venue';
+import { GET }                                  from '~/store/geo/actions';
+import { $geo }                                 from '~/store/geo/selectors';
+import { $history }                             from '~/store/history/selectors';
+import { AUTH_ERROR }                           from '~/store/session/actions';
+import { CHECKIN, FETCH_VENUES, RESET, SEARCH } from './actions';
+import SearchBar                                from './SearchBar';
+import { $$checkinById, $searchBy, $venues }    from './selectors';
 // import * as css from './index.scss';
 
 
 const SearchFeature: FC = () => {
 
-  const [searchText, setSearchText] = useState('');
+  useTitle('Search');
 
-  const list = useMemo(() => {
-    if (searchText == null || searchText === '') {
-      return null;
+  const dispatch = useDispatch();
+
+  const geo = useRS($geo);
+  const searchBy = useRS($searchBy);
+
+  const onAuthError = () => dispatch(AUTH_ERROR());
+
+  // Cleanup when leave.
+  useEffect(() => () => dispatch(RESET()), [dispatch]);
+
+  // Request Geolocation.
+  useEffect(() => {
+    dispatch(GET());
+  }, [dispatch]);
+
+  // Request nearby venues when geo changes.
+  useEffect(() => {
+    if (geo == null || searchBy == null) {
+      return;
     }
-    return <List
-      token={token}
-      history={history}
-      search={searchText}
-      geo={geo}
-      onNewHistory={onNewHistory}
-      onAuthError={onAuthError}
-    />;
-  }, [geo, history, onAuthError, onNewHistory, searchText, token]);
+    dispatch(FETCH_VENUES.request([searchBy, geo]));
+  }, [dispatch, geo, searchBy]);
+
+
+  const onSearch = useCallback((val: string) => dispatch(SEARCH(val)), [dispatch]);
+
+  const onItemClick = useCallback(({ id }: Venue) => {
+    if (geo == null) {
+      return;
+    }
+    dispatch(CHECKIN.request([id, geo]));
+  }, [dispatch, geo]);
 
   return (
-    <Fragment>
-      <SearchBar current={searchText} onChange={val => setSearchText(val)}/>
-      {list}
-      <CancelButton onClick={onCancel}/>
-    </Fragment>
+    <div className="feature">
+      <SearchBar onSearch={onSearch}/>
+
+      <List
+        $geo={$geo}
+        $history={$history}
+        $venues={$venues}
+        $$checkinById={$$checkinById}
+        onItemClick={onItemClick}
+        onAuthError={onAuthError}
+      />
+    </div>
   );
 };
 

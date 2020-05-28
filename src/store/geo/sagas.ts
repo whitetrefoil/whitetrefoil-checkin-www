@@ -1,9 +1,14 @@
-import defer                      from '@redux-saga/deferred';
-import { call, put, takeLeading } from 'redux-saga/effects';
-import { Geo }                    from '~/interfaces/geo';
-import * as A                     from './actions';
+import defer                              from '@redux-saga/deferred';
+import { call, put, select, takeLeading } from 'redux-saga/effects';
+import { Geo }                            from '~/interfaces/geo';
+import * as A                             from './actions';
+import { $geo }                           from './selectors';
 
 function *get() {
+  const current = yield select($geo);
+  if (current != null) {
+    return;
+  }
   try {
     const geo: Geo = yield call(() => {
       const deferred = defer<Geo>();

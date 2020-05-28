@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import React, { ChangeEvent, FC, FormEvent, memo }  from 'react';
 import * as css                                     from './index.scss';
+import { prevented } from '@whitetrefoil/jsx-sp-events/react';
 
 
 const SearchBar: FC<{
-  current: string;
-  onChange(val: string): unknown;
+  onSearch(val: string): unknown;
 }> = ({
-  current,
-  onChange,
+  onSearch,
 }) => {
 
-  const [input, setInput] = useState(current);
+  const [value, setValue] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -21,22 +20,22 @@ const SearchBar: FC<{
     }
   }, []);
 
+  const onInputChange = useCallback((ev: ChangeEvent<HTMLInputElement>) => {
+    setValue(ev.currentTarget.value);
+  }, []);
+
   const onSubmit = useCallback((ev: FormEvent<HTMLFormElement>) => {
-    onChange(input);
-  }, [input, onChange]);
+    onSearch(value);
+  }, [onSearch, value]);
 
   const onReset = useCallback(() => {
-    setInput('');
+    setValue('');
     inputRef.current?.focus();
   }, []);
 
-  const onInputChange = useCallback((ev: ChangeEvent<HTMLInputElement>) => {
-    setInput(ev.currentTarget.value);
-  }, []);
-
   return (
-    <form action="#" onSubmit={onSubmit} onReset={onReset} className={css.searchBar}>
-      <input ref={inputRef} type="text" className={css.text} value={input} onChange={onInputChange}/>
+    <form action="#" onSubmit={prevented(onSubmit)} onReset={onReset} className={css.searchBar}>
+      <input ref={inputRef} type="text" className={css.text} value={value} onChange={onInputChange}/>
       <button type="reset" className={css.clear}/>
     </form>
   );

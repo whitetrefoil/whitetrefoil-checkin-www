@@ -9,8 +9,8 @@ declare global {
     // |ActionType<typeof import('./loading/actions')>
     // |ActionType<typeof import('./message/actions')>
     |ActionType<typeof import('~/features/list/actions')>
-  // |ActionType<typeof import('~/features/detail/actions')>
-  // |ActionType<typeof import('~/features/search/actions')>
+    // |ActionType<typeof import('~/features/detail/actions')>
+    |ActionType<typeof import('~/features/search/actions')>
     ;
 
   interface RootState {
@@ -21,7 +21,7 @@ declare global {
     // message: import('./message/reducer').State;
     list: import('~/features/list/reducer').State;
     // detail: import('~/features/detail/reducer').State;
-    // search: import('~/features/search/reducer').State;
+    search: import('~/features/search/reducer').State;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,5 +38,6 @@ declare module 'typesafe-actions' {
   interface Types {
     RootAction: RootAction;
   }
+
   export type NoMeta<T> = [T, never];
 }

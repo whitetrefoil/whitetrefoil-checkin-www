@@ -20,7 +20,7 @@ const FeatureDetector: FC = () => {
 
   useLayoutEffect(() => {
     if (canUseWebP()) {
-      window.document.body.className = `${window.document.body.className} webp`.trim();
+      window.document.body.classList.add('webp');
     }
   }, []);
 
