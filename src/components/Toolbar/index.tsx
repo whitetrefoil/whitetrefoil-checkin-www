@@ -23,9 +23,11 @@ const Toolbar: FC = () => {
     return <Redirect push to="/search"/>;
   }
 
+  const isFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+
   return (
     <div className={css.root}>
-      <a href="#" className={css.back} onClick={prevented(onBackClick)}>Back</a>
+      {isFullscreen && <a href="#" className={css.back} onClick={prevented(onBackClick)}>Back</a>}
       <a href="#" className={css.search} onClick={prevented(onSearch)}>Search</a>
     </div>
   );
