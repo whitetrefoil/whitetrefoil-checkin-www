@@ -6,11 +6,8 @@ export interface GetVenuesResponse {
   venues: Venue[];
 }
 
-export const getVenues = async(token: string, geo: Geo, name?: string): Promise<GetVenuesResponse> => {
-  return get<Venue[]>('venues', {
-    headers     : {
-      'x-token': token,
-    },
+export const getVenues = async(geo: Geo, name?: string): Promise<GetVenuesResponse> =>
+  get<Venue[]>('venues', {
     searchParams: {
       name     : name ?? '',
       latitude : geo[0],
@@ -21,4 +18,3 @@ export const getVenues = async(token: string, geo: Geo, name?: string): Promise<
   }).then(venues => ({
     venues,
   }));
-};

@@ -1,18 +1,19 @@
 import { prevented }       from '@whitetrefoil/jsx-sp-events/react';
 import React, { FC, memo } from 'react';
+import { ValOf }           from '~/hooks/use-val';
 import { User }            from '~/interfaces/user';
 import Avatar              from './Avatar';
 import * as css            from './index.scss';
 
 
 const MainNav: FC<{
-  user: User|null;
+  $user: ValOf<User|undefined>;
 }> = ({
-  user,
+  $user,
 }) => (
   <nav className={css.root}>
     <a href="#" className={css.title} onClick={prevented}>Click to Check-in</a>
-    <Avatar user={user}/>
+    <Avatar $user={$user}/>
   </nav>
 );
 

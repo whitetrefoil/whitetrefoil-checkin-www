@@ -19,22 +19,18 @@ export type AddCheckinResponse = Checkin;
 
 
 export const addCheckin = async(
-  token: string,
   venueId: string,
   geo: Geo,
   shout?: string,
-): Promise<AddCheckinResponse> => {
-  return post<RawRes>('checkin', {
-    headers: {
-      'x-token': token,
-    },
-    json   : {
+): Promise<AddCheckinResponse> =>
+  post<RawRes>('checkin', {
+    json: {
       // eslint-disable-next-line camelcase
-      venue_id: venueId,
-      latitude: geo[0],
+      venue_id : venueId,
+      latitude : geo[0],
       longitude: geo[1],
-      accuracy: geo[3],
-      altitude: geo[2],
+      accuracy : geo[3],
+      altitude : geo[2],
       shout,
     },
   }).then(res => ({
@@ -43,4 +39,3 @@ export const addCheckin = async(
     url    : res.url,
     reasons: res.reasons,
   }));
-};

@@ -1,4 +1,5 @@
 import ky, { Options } from 'ky';
+import rootStore       from '../store';
 
 
 interface RawResponse<T> {
@@ -19,6 +20,16 @@ const api = ky.create({
   prefixUrl      : '/api',
   headers        : {
     'content-type': 'application/json',
+  },
+  hooks          : {
+    beforeRequest: [
+      request => {
+        const { token } = rootStore.getState().session;
+        if (token != null) {
+          request.headers.set('x-token', token);
+        }
+      },
+    ],
   },
   timeout        : 5000,
   retry          : 0,

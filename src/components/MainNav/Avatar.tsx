@@ -1,14 +1,17 @@
 import { useMemo }         from 'preact/hooks';
 import React, { FC, memo } from 'react';
+import { useVal, ValOf }   from '~/hooks/use-val';
 import { User }            from '~/interfaces/user';
 import * as css            from './index.scss';
 
 
 const Avatar: FC<{
-  user: User|null;
+  $user: ValOf<User|undefined>;
 }> = ({
-  user,
+  $user,
 }) => {
+
+  const user = useVal($user);
 
   const img = useMemo(() => user == null ? '?' : <img
     alt={`${user.firstName}'s avatar`}

@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.1.10
+
+* Use bootstrap-icons.
+
 ### v0.1.9
 
 * Add search.

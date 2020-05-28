@@ -1,22 +1,19 @@
 import React, { FC, memo, useEffect, useState } from 'react';
-import { checkLogin }                           from '~/api/check-login';
+import { useDispatch }                          from 'react-redux';
 import { getLoginUrl }                          from '~/api/get-login-url';
-import { User }                                 from '~/interfaces/user';
+import { LOGIN }                                from '~/store/session/actions';
 // import * as css from './index.scss';
 
 
-const Login: FC<{
-  onLogin(token: string, user: User): unknown;
-}> = ({
-  onLogin,
-}) => {
+const Login: FC = () => {
 
+  const dispatch = useDispatch();
   const code = new URLSearchParams(window.location.search).get('code');
   const [loginPage, setLoginPage] = useState<string|null>(null);
 
   useEffect(() => {
     if (code != null && code !== '') {
-      checkLogin(code).then(({ token, user }) => onLogin(token, user));
+      dispatch(LOGIN.request(code));
       return;
     }
     if (loginPage == null) {
@@ -24,7 +21,7 @@ const Login: FC<{
       return;
     }
     window.location.assign(loginPage);
-  }, [code, loginPage, onLogin]);
+  }, [code, dispatch, loginPage]);
 
   if (code == null || code === '') {
     return (

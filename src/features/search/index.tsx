@@ -1,30 +1,12 @@
 import { useMemo, useState }         from 'preact/hooks';
 import React, { FC, Fragment, memo } from 'react';
-import { Geo }                       from '~/interfaces/geo';
-import { User }                      from '~/interfaces/user';
 import List                          from '../List';
 import CancelButton                  from './CancelButton';
 import SearchBar                     from './SearchBar';
 // import * as css from './index.scss';
 
 
-const Search: FC<{
-  token: string;
-  user: User|null;
-  history: Record<string, number>|null;
-  geo: Geo|null;
-  onCancel(): unknown;
-  onNewHistory(venueId: string): unknown;
-  onAuthError(): unknown;
-}> = ({
-  token,
-  user,
-  history,
-  geo,
-  onCancel,
-  onNewHistory,
-  onAuthError,
-}) => {
+const SearchFeature: FC = () => {
 
   const [searchText, setSearchText] = useState('');
 
@@ -52,4 +34,4 @@ const Search: FC<{
 };
 
 
-export default memo(Search);
+export default memo(SearchFeature);

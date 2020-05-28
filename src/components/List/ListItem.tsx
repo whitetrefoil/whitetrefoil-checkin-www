@@ -1,53 +1,46 @@
-import c                                  from 'classnames';
-import { useCallback, useMemo, useState } from 'preact/hooks';
-import React, { FC, memo }                from 'react';
-import { Venue }                          from '~/interfaces/venue';
-import * as css                           from './index.scss';
-import LastCheckin                        from './LastCheckin';
+import c                        from 'classnames';
+import { useCallback, useMemo } from 'preact/hooks';
+import React, { FC, memo }      from 'react';
+import { useVal, ValOf }        from '~/hooks/use-val';
+import { Checkin }              from '~/interfaces/checkin';
+import { Venue }                from '~/interfaces/venue';
+import * as css                 from './index.scss';
+import LastCheckin              from './LastCheckin';
 
 
 const ListItem: FC<{
   venue: Venue;
   lastCheckin: number|null;
-  onClick(venue: Venue): Promise<number>;
+  $checkinStatus: ValOf<Saveable<Checkin>|nil>;
+  onClick(venue: Venue): unknown;
 }> = ({
   venue,
   lastCheckin,
+  $checkinStatus,
   onClick: oc,
 }) => {
 
-  // null - initial
-  // 0 - checking-in
-  // <0 - error
-  // >0 - score
-  const [status, setStatus] = useState<number|null>(null);
+  const { data: status, saving, saveError } = useVal($checkinStatus) ?? { data: undefined };
 
   const onClick = useCallback(() => {
-    if ((status ?? -1) >= 0) {
+    if (status != null || saving) {
       return;
     }
-    setStatus(0);
-    oc(venue)
-      .then(score => {
-        setStatus(score);
-      }, () => {
-        setStatus(-Infinity);
-      });
-  }, [oc, status, venue]);
+    oc(venue);
+  }, [oc, saving, status, venue]);
 
-  const klasses = useMemo(() => c(css.item, status == null ? undefined :
-    status === 0 ? css.loading :
-      status < 0 ? css.failed :
-        status > 0 ? css.success :
-          undefined,
-  ), [status]);
+  const klasses = useMemo(() => c(css.item, saving ? css.loading :
+    saveError != null ? css.failed :
+      status != null ? css.success :
+        undefined,
+  ), [saveError, saving, status]);
 
   return (
     <li className={klasses} onClick={onClick}>
       <section>
         <header className={css.title}>
           <h3 className={css.name}>
-            <span className={css.success}>+{status}︎</span>
+            <span className={css.success}>+{status?.score}︎</span>
             <span className={css.failed}>FAILED</span>
             <span className={css.mayor}>👑</span>
             {venue.name}

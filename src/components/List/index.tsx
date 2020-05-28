@@ -1,63 +1,52 @@
-import { useCallback, useEffect, useState } from 'preact/hooks';
-import React, { FC, memo }                  from 'react';
-import { addCheckin }                       from '~/api/add-checkin';
-import { getVenues }                        from '~/api/get-venues';
-import { Geo }                              from '~/interfaces/geo';
-import { Venue }                            from '~/interfaces/venue';
-import * as css                             from './index.scss';
-import ListItem                             from './ListItem';
+import React, { FC, memo } from 'react';
+import { useVal, ValOf }   from '~/hooks/use-val';
+import { Geo }             from '~/interfaces/geo';
+import { Venue }           from '~/interfaces/venue';
+import { $$checkinById }   from '~/features/list/selectors';
+import * as css            from './index.scss';
+import ListItem            from './ListItem';
 
 
 const List: FC<{
-  token: string;
-  history: Record<string, number>|null;
-  geo: Geo|null;
-  search: string;
-  onNewHistory(venueId: string): unknown;
+  $geo: ValOf<Geo|nil>;
+  $history: ValOf<Record<string, number>|nil>;
+  $venues: ValOf<Loadable<Venue[]>>;
+  onItemClick(venue: Venue): unknown;
   onAuthError(): unknown;
 }> = ({
-  token,
-  history,
-  geo,
-  search,
-  onNewHistory,
+  $geo,
+  $history,
+  $venues,
+  onItemClick,
   onAuthError,
 }) => {
 
-  const [venues, setVenues] = useState<Venue[]|null>(null);
+  const geo = useVal($geo);
+  const { data: venues, loading, loadError } = useVal($venues);
+  const history = useVal($history);
 
-  useEffect(() => {
-    if (geo == null) {
-      return;
-    }
-    getVenues(token, geo, search).then(({ venues: v }) => setVenues(v));
-  }, [geo, token, search]);
 
-  const onItemClick = useCallback(async(venue: Venue, shout?: string): Promise<number> => {
-    if (geo == null) {
-      return new Promise((res, rej) => rej(new Error('shouldn\'t reach')));
-    }
-    const result = await addCheckin(token, venue.id, geo);
-    onNewHistory(venue.id);
-    return result.score;
-  }, [geo, onNewHistory, token]);
-
-  if (geo == null) {
-    return <div className={css.message}>Requiring GPS location&hellip;</div>;
+  if (loadError != null) {
+    return <div className={css.message}>Failed to acquire nearby venues, please retry!</div>;
   }
 
-  if (venues == null) {
-    return <div className={css.message}>Requiring nearby venues&hellip;</div>;
+  if (geo == null) {
+    return <div className={css.message}>Acquiring GPS location&hellip;</div>;
+  }
+
+  if (loading) {
+    return <div className={css.message}>Acquiring nearby venues&hellip;</div>;
   }
 
   if (history == null) {
-    return <div className={css.message}>Requiring user info</div>;
+    return <div className={css.message}>Acquiring user info</div>;
   }
 
-  const items = venues.map(v => <ListItem
+  const items = venues == null ? [] : venues.map(v => <ListItem
     key={v.id}
     venue={v}
     lastCheckin={history?.[v.id] ?? null}
+    $checkinStatus={$$checkinById(v.id)}
     onClick={onItemClick}
   />);
 
