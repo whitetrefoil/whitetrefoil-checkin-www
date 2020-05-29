@@ -6,6 +6,12 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.2.2
+
+* Use FIB i.o. bar in non-fullscreen mode.
+* Fix checkin will cancel other unfinished checkin.
+* Opti. mayor & searchbar.
+
 ### v0.2.1
 
 * Use cachebuster for manifest file.
