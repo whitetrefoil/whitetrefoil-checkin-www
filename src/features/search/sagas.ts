@@ -1,9 +1,9 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { addCheckin }            from '~/api/add-checkin';
-import { getVenues }             from '~/api/get-venues';
-import { Geo }                   from '~/interfaces/geo';
-import { APPEND }                from '~/store/history/actions';
-import { CHECKIN, FETCH_VENUES } from './actions';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { addCheckin }                       from '~/api/add-checkin';
+import { getVenues }                        from '~/api/get-venues';
+import { Geo }                              from '~/interfaces/geo';
+import { APPEND }                           from '~/store/history/actions';
+import { CHECKIN, FETCH_VENUES }            from './actions';
 
 
 function *doFetchVenues(action: PA<[string, Geo]>) {
@@ -30,5 +30,5 @@ function *doCheckin(action: PA<[string, Geo]>) {
 
 export function *watch() {
   yield takeLatest(FETCH_VENUES.request, doFetchVenues);
-  yield takeLatest(CHECKIN.request, doCheckin);
+  yield takeEvery(CHECKIN.request, doCheckin);
 }
