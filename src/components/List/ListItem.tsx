@@ -29,10 +29,15 @@ const ListItem: FC<{
     oc(venue);
   }, [oc, saving, status, venue]);
 
-  const klasses = useMemo(() => c(css.item, saving ? css.loading :
-    saveError != null ? css.failed :
-      status != null ? css.success :
-        undefined,
+  const klasses = useMemo(() => c(
+    css.item,
+    saving ? css.loading :
+      saveError != null ? css.failed :
+        status != null ? css.success :
+          undefined,
+    {
+      [css.isMayor]: status != null && status.isMayor,
+    },
   ), [saveError, saving, status]);
 
   return (
@@ -41,8 +46,8 @@ const ListItem: FC<{
         <header className={css.title}>
           <h3 className={css.name}>
             <span className={css.success}>+{status?.score}︎</span>
-            <span className={css.failed}>FAILED</span>
-            <span className={css.mayor}>👑</span>
+            <span className={css.failed}/>
+            <span className={css.mayor}/>
             {venue.name}
           </h3>
           {lastCheckin && <LastCheckin ms={lastCheckin}/>}

@@ -2,7 +2,7 @@
 
 :local {
 
-  @keyframes :local(loading) {
+  @keyframes:local(loading) {
     from {
       transform: translateX(-100%);
     }
@@ -14,7 +14,7 @@
   .item {
     overflow: hidden;
     position: relative;
-    padding: 1.2rem;
+    padding: 1rem 1.2rem;
     border-bottom: 1px solid vars.$border-color;
 
     &.loading {
@@ -39,7 +39,13 @@
 
     &.failed {
       .failed {
-        display: inline;
+        display: inline-block;
+      }
+    }
+
+    &.is-mayor {
+      .mayor {
+        display: inline-block;
       }
     }
 
@@ -48,13 +54,19 @@
     }
 
     .name {
+      height: 1.5rem;
       flex: 1 1 auto;
       font-size: 1.2rem;
-      margin-bottom: 1rem;
+      margin-bottom: .7rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       color: vars.$primary;
+      vertical-align: top;
+
+      * {
+        vertical-align: top;
+      }
     }
 
     .success {
@@ -62,19 +74,25 @@
       margin-right: .5rem;
       color: vars.$accent;
       font-size: 1rem;
+      vertical-align: baseline;
+    }
+
+    .failed, .mayor {
+      display: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: -.3rem;
+      margin-right: .5rem;
+      position: relative;
+      background-size: auto 1.2rem;
     }
 
     .failed {
-      display: none;
-      margin-right: .5rem;
-      color: vars.$error;
-      font-size: .8rem;
+      background: no-repeat center top url("~bootstrap-icons/icons/exclamation-diamond-fill.svg?fill=#{vars.$error}");
     }
 
     .mayor {
-      display: none;
-      margin-right: .5rem;
-      font-size: .8rem;
+      background: no-repeat center top url("~bootstrap-icons/icons/award-fill.svg?fill=Gold");
     }
 
     .last-checkin {
