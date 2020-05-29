@@ -2,6 +2,7 @@ import { useEffect, useMemo }      from 'preact/hooks';
 import React, { FC, memo }         from 'react';
 import { useDispatch }             from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router';
+import Fib                         from './components/Fib';
 import Login                       from './components/Login';
 import Toolbar                     from './components/Toolbar/index';
 import ListFeature                 from './features/list';
@@ -46,10 +47,14 @@ const App: FC = () => {
     [token],
   );
 
+  const isFullscreen = /*process.env.NODE_ENV === 'development' ||*/ window.matchMedia('(display-mode: fullscreen)').matches;
+
+  const actionArea = isFullscreen ? <Toolbar/> : <Fib/>;
+
   return (
     <div id="app">
       {contentElem}
-      <Toolbar/>
+      {actionArea}
     </div>
   );
 };

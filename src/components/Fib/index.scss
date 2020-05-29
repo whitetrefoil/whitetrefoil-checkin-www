@@ -1,0 +1,16 @@
+@use "../../styles/vars" as *;
+
+:local {
+  .root {
+    display: block;
+    width: 3.6rem;
+    height: 3.6rem;
+    position: fixed;
+    right: 1.8rem;
+    bottom: 1.8rem;
+    text-indent: -99999em;
+    background: $dimmer no-repeat center center url("~bootstrap-icons/icons/search.svg?fill=#{$primary}");
+    border: 1px solid $dim;
+    border-radius: 3rem;
+  }
+}
