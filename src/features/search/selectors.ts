@@ -9,6 +9,3 @@ export const $venues: RS<State['venues']> = s => s.search.venues;
 export const $venueItems = createSelector($venues, v => v.data);
 export const $venueLoading = createSelector($venues, v => v.loading);
 export const $venueFailed = createSelector($venues, v => v.loadError);
-
-export const $checkins: RS<State['checkins']> = s => s.search.checkins;
-export const $$checkinById = (id: string) => createSelector($checkins, checkins => checkins[id]);

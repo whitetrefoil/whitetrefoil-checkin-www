@@ -3,6 +3,7 @@ import { ActionType, PayloadAction, PayloadActionCreator } from 'typesafe-action
 
 declare global {
   type RootAction =
+    |ActionType<typeof import('./checkin/actions')>
     |ActionType<typeof import('./geo/actions')>
     |ActionType<typeof import('./history/actions')>
     |ActionType<typeof import('./session/actions')>
@@ -14,6 +15,7 @@ declare global {
     ;
 
   interface RootState {
+    checkin: import('./checkin/reducer').State;
     geo: import('./geo/reducer').State;
     history: import('./history/reducer').State;
     session: import('./session/reducer').State;

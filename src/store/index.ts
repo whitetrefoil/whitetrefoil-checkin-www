@@ -7,6 +7,8 @@ import * as listSagas                                    from '~/features/list/s
 import search                                            from '~/features/search/reducer';
 import * as searchSagas                                  from '~/features/search/sagas';
 import { getInStorage }                                  from '~/utils/in-storage';
+import checkin                                           from './checkin/reducer';
+import * as checkinSagas                                 from './checkin/sagas';
 import geo                                               from './geo/reducer';
 import * as geoSagas                                     from './geo/sagas';
 import history                                           from './history/reducer';
@@ -16,6 +18,7 @@ import * as sessionSagas                                 from './session/sagas';
 
 
 export const rootReducer = combineReducers({
+  checkin,
   geo,
   history,
   session,
@@ -30,6 +33,7 @@ function *runSagas(sagas: Record<string, Saga>) {
 }
 
 function *rootWatch() {
+  yield *runSagas(checkinSagas);
   yield *runSagas(geoSagas);
   yield *runSagas(historySagas);
   yield *runSagas(sessionSagas);

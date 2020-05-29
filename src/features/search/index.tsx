@@ -1,17 +1,19 @@
-import { useCallback, useEffect }               from 'preact/hooks';
-import React, { FC, memo }                      from 'react';
-import { useDispatch }                          from 'react-redux';
-import List                                     from '~/components/List';
-import { useRS }                                from '~/hooks/use-root-selector';
-import { useTitle }                             from '~/hooks/use-title';
-import { Venue }                                from '~/interfaces/venue';
-import { GET }                                  from '~/store/geo/actions';
-import { $geo }                                 from '~/store/geo/selectors';
-import { $history }                             from '~/store/history/selectors';
-import { AUTH_ERROR }                           from '~/store/session/actions';
-import { CHECKIN, FETCH_VENUES, RESET, SEARCH } from './actions';
-import SearchBar                                from './SearchBar';
-import { $$checkinById, $searchBy, $venues }    from './selectors';
+import { useCallback, useEffect }      from 'preact/hooks';
+import React, { FC, memo }             from 'react';
+import { useDispatch }                 from 'react-redux';
+import List                            from '~/components/List';
+import { useRS }                       from '~/hooks/use-root-selector';
+import { useTitle }                    from '~/hooks/use-title';
+import { Venue }                       from '~/interfaces/venue';
+import { CHECKIN }                     from '~/store/checkin/actions';
+import { $$checkinById }               from '~/store/checkin/selectors';
+import { GET }                         from '~/store/geo/actions';
+import { $geo }                        from '~/store/geo/selectors';
+import { $history }                    from '~/store/history/selectors';
+import { AUTH_ERROR }                  from '~/store/session/actions';
+import { FETCH_VENUES, RESET, SEARCH } from './actions';
+import SearchBar                       from './SearchBar';
+import { $searchBy, $venues }          from './selectors';
 // import * as css from './index.scss';
 
 

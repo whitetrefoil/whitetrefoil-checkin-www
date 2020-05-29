@@ -1,18 +1,20 @@
-import { useEffect }                    from 'preact/hooks';
-import React, { FC, memo }              from 'react';
-import { useDispatch }                  from 'react-redux';
-import List                             from '~/components/List';
-import MainNav                          from '~/components/MainNav';
-import { useRS }                        from '~/hooks/use-root-selector';
-import { useTitle }                     from '~/hooks/use-title';
-import { Venue }                        from '~/interfaces/venue';
-import { GET }                          from '~/store/geo/actions';
-import { $geo }                         from '~/store/geo/selectors';
-import { $history }                     from '~/store/history/selectors';
-import { AUTH_ERROR }                   from '~/store/session/actions';
-import { $user }                        from '~/store/session/selectors';
-import { CHECKIN, FETCH_VENUES, RESET } from './actions';
-import { $$checkinById, $venues }       from './selectors';
+import { useEffect }           from 'preact/hooks';
+import React, { FC, memo }     from 'react';
+import { useDispatch }         from 'react-redux';
+import List                    from '~/components/List';
+import MainNav                 from '~/components/MainNav';
+import { useRS }               from '~/hooks/use-root-selector';
+import { useTitle }            from '~/hooks/use-title';
+import { Venue }               from '~/interfaces/venue';
+import { CHECKIN }             from '~/store/checkin/actions';
+import { $$checkinById }       from '~/store/checkin/selectors';
+import { GET }                 from '~/store/geo/actions';
+import { $geo }                from '~/store/geo/selectors';
+import { $history }            from '~/store/history/selectors';
+import { AUTH_ERROR }          from '~/store/session/actions';
+import { $user }               from '~/store/session/selectors';
+import { FETCH_VENUES, RESET } from './actions';
+import { $venues }             from './selectors';
 // import * as css from './index.scss';
 
 
