@@ -20,6 +20,10 @@ const SearchBar: FC<{
     }
   }, []);
 
+  useEffect(() => {
+    inputRef.current?.scrollIntoView();
+  }, []);
+
   const onInputChange = useCallback((ev: ChangeEvent<HTMLInputElement>) => {
     setValue(ev.currentTarget.value);
   }, []);
