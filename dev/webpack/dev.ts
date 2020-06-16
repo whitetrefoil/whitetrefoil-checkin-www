@@ -52,17 +52,17 @@ const devConfig: webpack.Configuration = {
 
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test   : /\.[jt]sx?$/,
-        use    : [
-          'source-map-loader',
-          'eslint-loader?emitWarning',
-        ],
-        include: [
-          config.absSource(),
-        ],
-      },
+      // {
+      //   enforce: 'pre',
+      //   test   : /\.[jt]sx?$/,
+      //   use    : [
+      //     'source-map-loader',
+      //     'eslint-loader?emitWarning',
+      //   ],
+      //   include: [
+      //     config.absSource(),
+      //   ],
+      // },
       {
         test   : /\.html$/,
         exclude: /node_modules/,
@@ -83,9 +83,8 @@ const devConfig: webpack.Configuration = {
           {
             loader : 'ts-loader',
             options: {
-              transpileOnly       : true,
-              experimentalWatchApi: true,
-              configFile          : config.absRoot('tsconfig.json'),
+              transpileOnly: true,
+              configFile   : config.absRoot('tsconfig.json'),
             },
           },
         ],
@@ -229,8 +228,17 @@ const devConfig: webpack.Configuration = {
 
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tsconfig                   : config.absRoot('tsconfig.json'),
-      useTypescriptIncrementalApi: false,
+      typescript: {
+        configFile       : config.absRoot('tsconfig.json'),
+        diagnosticOptions: {
+          semantic : true,
+          syntactic: true,
+        },
+      },
+      eslint    : {
+        enabled: true,
+        files  : ['./**/*.ts', './**/*.tsx'],
+      },
     }),
 
     new WorkboxPlugin.GenerateSW({

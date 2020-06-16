@@ -73,7 +73,6 @@ const prodConfig: webpack.Configuration = {
             loader : 'ts-loader',
             options: {
               transpileOnly: true,
-              configFile   : config.absRoot('tsconfig.json'),
             },
           },
         ],
@@ -236,8 +235,13 @@ const prodConfig: webpack.Configuration = {
 
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tsconfig                   : config.absRoot('tsconfig.json'),
-      useTypescriptIncrementalApi: false,
+      typescript: {
+        configFile       : config.absRoot('tsconfig.json'),
+        diagnosticOptions: {
+          semantic : true,
+          syntactic: true,
+        },
+      },
     }),
 
     new WorkboxPlugin.GenerateSW({

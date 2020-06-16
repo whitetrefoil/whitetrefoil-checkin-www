@@ -7,6 +7,7 @@
     "esModuleInterop"               : true,
     "experimentalDecorators"        : true,
     "jsx"                           : "react",
+    "importsNotUsedAsValues"        : "preserve",
     "inlineSourceMap"               : false,
     "inlineSources"                 : false,
     "lib"                           : ["esnext", "dom", "dom.iterable"],
