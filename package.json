@@ -1,5 +1,6 @@
 {
   "name": "@whitetrefoil/checkin-www",
+  "description" : "Simple app to check-in Swarm (4sq)",
   "version": "0.3.0",
   "private": true,
   "author": {

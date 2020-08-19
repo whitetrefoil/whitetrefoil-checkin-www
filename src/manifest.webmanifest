@@ -1,6 +1,7 @@
 {
-  "short_name"      : "Bee",
   "name"            : "Simple Check-in",
+  "short_name"      : "Bee",
+  "description"     : "Simple app to check-in Swarm (4sq)",
   "icons"           : [
     {
       "sizes": "144x144",
