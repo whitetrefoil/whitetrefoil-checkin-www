@@ -7,9 +7,9 @@
     "email": "whitetrefoil@gmail.com"
   },
   "scripts": {
-    "build": "gulp build",
-    "start": "gulp serve -d",
-    "serve": "gulp serve -d",
+    "build": "cross-env TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true gulp build",
+    "start": "cross-env TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true gulp serve -d",
+    "serve": "cross-env TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true gulp serve -d",
     "lint": "rimraf test_results/eslint && eslint --ext .js,.jsx,.ts,.tsx -o test_results/eslint/junit.xml -f junit src",
     "test": "rimraf test_results/jest && jest --no-cache --no-coverage",
     "coverage": "rimraf test_results/jest && jest --no-cache"
