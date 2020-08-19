@@ -152,7 +152,9 @@ const prodConfig: webpack.Configuration = {
           {
             loader : 'file-loader',
             options: {
-              name: '[hash].[ext]',
+              // manifest file path must NOT change
+              // see: https://developers.google.com/web/fundamentals/integration/webapks
+              name: '[name].[ext]',
             },
           },
         ],
