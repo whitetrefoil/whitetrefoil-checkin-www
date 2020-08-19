@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.3.1
+
+* Change to "standalone" mode.
+
 ### v0.3.0
 
 * Major infrastructure upgrade.
