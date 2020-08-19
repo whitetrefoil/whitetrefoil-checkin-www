@@ -6,6 +6,11 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.3.0
+
+* Major infrastructure upgrade.
+* Change back to "minimal-ui" mode.
+
 ### v0.2.2
 
 * Use FIB i.o. bar in non-fullscreen mode.
