@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.3.2
+
+* Remove cachebuster from manifest file path.
+
 ### v0.3.1
 
 * Change to "standalone" mode.
