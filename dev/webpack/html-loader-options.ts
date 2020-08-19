@@ -1,4 +1,4 @@
-import type { Options } from 'html-minifier-terser';
+import type { Options } from 'html-minifier-terser'
 
 const htmlLoaderMinimizeConfig: Options = {
 
@@ -40,7 +40,7 @@ const htmlLoaderMinimizeConfig: Options = {
   minifyCSS                  : true,
   minifyJS                   : true,
   useShortDoctype            : true,
-};
+}
 
 const attributesList = [
   {
@@ -69,13 +69,13 @@ const attributesList = [
     type     : 'src',
     filter   : (tag: string, attribute: string, attributes: Record<string, string>) => {
       if (!/(?:stylesheet|manifest|icon)/i.test(attributes.rel)) {
-        return false;
+        return false
       }
 
-      return true;
+      return true
     },
   },
-];
+]
 
 
 export default {
@@ -83,4 +83,4 @@ export default {
   attributes: {
     list: attributesList,
   },
-};
+}

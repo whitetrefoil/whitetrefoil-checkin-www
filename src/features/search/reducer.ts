@@ -1,21 +1,21 @@
-import omit                          from 'object.omit';
-import { ActionType, createReducer } from 'typesafe-actions';
-import { Venue }                     from '~/interfaces/venue';
-import * as A                        from './actions';
+import omit                          from 'object.omit'
+import { ActionType, createReducer } from 'typesafe-actions'
+import { Venue }                     from '~/interfaces/venue'
+import * as A                        from './actions'
 
 
-type Action = ActionType<typeof A>;
+type Action = ActionType<typeof A>
 
 
 export interface State {
-  searchBy?: string;
-  venues: Loadable<Venue[]>;
+  searchBy?: string
+  venues: Loadable<Venue[]>
 }
 
 
 const init = (): State => ({
   venues: {},
-});
+})
 
 
 export default createReducer<State, Action>(init())
@@ -50,4 +50,4 @@ export default createReducer<State, Action>(init())
       loadError,
     },
   }))
-;
+

@@ -1,9 +1,7 @@
-import { get } from './base';
+import { get } from './base'
 
 export interface GetLoginUrlResponse {
-  url: string;
+  url: string
 };
 
-export const getLoginUrl = async(): Promise<GetLoginUrlResponse> => {
-  return get('login');
-};
+export const getLoginUrl = async(): Promise<GetLoginUrlResponse> => get('login')

@@ -3,6 +3,7 @@
 .server/
 dist/
 doc/
+html/
 node_modules/
 stubapi/
 test_results/

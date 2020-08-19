@@ -1,17 +1,12 @@
-import log              from 'fancy-log';
-import gulp             from 'gulp';
-import webpack          from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import config           from '../config';
-import devConfig        from '../webpack/dev';
-import prodConfig       from '../webpack/prod';
+import log              from 'fancy-log'
+import gulp             from 'gulp'
+import webpack          from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
+import config           from '../config'
+import webpackConfig    from '../webpack';
 
 
 gulp.task('devServer', async done => {
-
-  const webpackConfig = process.env.NODE_ENV === 'development'
-    ? devConfig
-    : prodConfig;
 
   const devServerOptions: WebpackDevServer.Configuration = {
     host              : '0.0.0.0',
@@ -25,15 +20,15 @@ gulp.task('devServer', async done => {
     hot               : true,
     noInfo            : false,
     index             : 'index.html',
-    injectClient      : true,
-    injectHot         : true,
+    injectClient      : compilerConfig => (compilerConfig as unknown as webpack.Configuration)?.target !== 'webworker',
+    injectHot         : compilerConfig => (compilerConfig as unknown as webpack.Configuration)?.target !== 'webworker',
     // Base on 'errors-only' + filter ts-loader transpileOnly related warnings.
     // See https://github.com/webpack/webpack/blob/30882ca548625e6d1e54323ff5c61795c6ab4bda/lib/Stats.js#L1405
     stats             : {
       all           : false,
       errors        : true,
       moduleTrace   : true,
-      warningsFilter: /export .* was not found in/,
+      warningsFilter: /export .* was not found in/u,
     },
     https             : true,
     proxy             : [
@@ -49,22 +44,22 @@ gulp.task('devServer', async done => {
     },
     disableHostCheck  : true,
     compress          : process.env.NODE_ENV !== 'development',
-  };
+  }
 
-  WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
+  WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions)
 
-  const webpackCompiler = webpack(webpackConfig);
+  const webpackCompiler = webpack(webpackConfig)
 
-  const server = new WebpackDevServer(webpackCompiler, devServerOptions);
+  const server = new WebpackDevServer(webpackCompiler, devServerOptions)
 
   server.listen(config.serverPort, '0.0.0.0', error => {
     if (error != null) {
-      log.error('Webpack Dev Server startup failed!  Detail:');
-      log.error(error);
+      log.error('Webpack Dev Server startup failed!  Detail:')
+      log.error(error)
     } else {
-      log(`Webpack Dev Server started at port ${config.serverPort}`);
+      log(`Webpack Dev Server started at port ${config.serverPort}`)
     }
 
-    done();
-  });
-});
+    done()
+  })
+})

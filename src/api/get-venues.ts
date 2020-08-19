@@ -1,9 +1,9 @@
-import { Geo }   from '~/interfaces/geo';
-import { Venue } from '~/interfaces/venue';
-import { get }   from './base';
+import { Geo }   from '~/interfaces/geo'
+import { Venue } from '~/interfaces/venue'
+import { get }   from './base'
 
 export interface GetVenuesResponse {
-  venues: Venue[];
+  venues: Venue[]
 }
 
 export const getVenues = async(geo: Geo, name?: string): Promise<GetVenuesResponse> =>
@@ -17,4 +17,4 @@ export const getVenues = async(geo: Geo, name?: string): Promise<GetVenuesRespon
     },
   }).then(venues => ({
     venues,
-  }));
+  }))

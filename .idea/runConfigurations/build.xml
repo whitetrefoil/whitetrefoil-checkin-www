@@ -2,12 +2,15 @@
   <configuration default="false" name="build" type="js.build_tools.gulp">
     <node-interpreter>project</node-interpreter>
     <node-options />
-    <gulpfile>$PROJECT_DIR$/Gulpfile.js</gulpfile>
+    <gulpfile>$PROJECT_DIR$/Gulpfile.ts</gulpfile>
     <tasks>
       <task>build</task>
     </tasks>
     <arguments />
-    <envs />
+    <envs>
+      <env name="TS_NODE_TRANSPILE_ONLY" value="true" />
+      <env name="TS_NODE_FILES" value="true" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>

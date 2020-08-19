@@ -1,14 +1,14 @@
-import React, { FC, memo } from 'react';
-import ReactDOM            from 'react-dom';
-import { Provider }        from 'react-redux';
-import { BrowserRouter }   from 'react-router-dom';
-import App                 from './App';
-import FeatureDetector     from './components/FeatureDetector';
-import rootStore           from './store';
+import React, { FC, memo } from 'react'
+import ReactDOM            from 'react-dom'
+import { Provider }        from 'react-redux'
+import { BrowserRouter }   from 'react-router-dom'
+import App                 from './App'
+import FeatureDetector     from './components/FeatureDetector'
+import rootStore           from './store'
 
 
 let Root: FC<{
-  store: typeof rootStore;
+  store: typeof rootStore
 }> = ({
   store,
 }) => (
@@ -18,13 +18,13 @@ let Root: FC<{
     </BrowserRouter>
     <FeatureDetector/>
   </Provider>
-);
+)
 
-Root = memo(Root);
+Root = memo(Root)
 
-export default Root;
+export default Root
 
 
 export async function render(rootNode: HTMLElement): Promise<void> {
-  ReactDOM.render(<Root store={rootStore}/>, rootNode);
+  ReactDOM.render(<Root store={rootStore}/>, rootNode)
 }

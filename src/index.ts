@@ -1,8 +1,8 @@
-import getLogger from '@whitetrefoil/log-utils';
-import './styles/initializing.scss';
+import getLogger from '@whitetrefoil/log-utils'
+import './styles/initializing.scss'
 
 
-const { debug, info, warn, error } = getLogger(`/src/${__filename.split('?')[0]}`);
+const { debug, info, warn, error } = getLogger(`/src/${__filename.split('?')[0]}`)
 
 
 function registerSW() {
@@ -12,48 +12,48 @@ function registerSW() {
         .then(
           reg => info('SW registered:', reg),
           err => warn('SW registration failed:', err),
-        );
-    });
+        )
+    })
   }
 }
 
 
 async function bootstrap() {
 
-  registerSW();
+  registerSW()
 
-  const render = await import(/*webpackChunkName:"Root"*/'./Root').then(m => m.render);
+  const render = await import(/*webpackChunkName:"Root"*/'./Root').then(m => m.render)
 
-  const rootDiv = document.createElement('div');
-  rootDiv.id = 'root';
-  document.body.appendChild(rootDiv);
+  const rootDiv = document.createElement('div')
+  rootDiv.id = 'root'
+  document.body.appendChild(rootDiv)
 
-  await render(rootDiv);
+  await render(rootDiv)
 }
 
 
 window.addEventListener('error', ev => {
-  error(ev);
+  error(ev)
   if (ev.error?.name === 'ChunkLoadError') {
     // Webpack async module load failed.
     // TODO: Handle error
-    window.location.assign('/error');
-    return;
+    window.location.assign('/error')
+    return
   }
-  const div = document.getElementById('runtime-error');
+  const div = document.getElementById('runtime-error')
   if (div == null) {
-    return;
+    return
   }
-  div.style.display = '';
-});
+  div.style.display = ''
+})
 
 
 bootstrap()
   .then(() => {
-    debug('Bootstrapped!');
+    debug('Bootstrapped!')
 
-    const loadingErrorDiv = document.getElementById('loading-error');
+    const loadingErrorDiv = document.getElementById('loading-error')
     if (loadingErrorDiv != null) {
-      loadingErrorDiv.remove();
+      loadingErrorDiv.remove()
     }
-  });
+  })

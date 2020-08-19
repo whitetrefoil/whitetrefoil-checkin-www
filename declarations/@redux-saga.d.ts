@@ -27,8 +27,8 @@ declare module '@redux-saga/core' {
     stdChannel,
     detach,
     buffers,
-  }        from '@redux-saga/core/types/ts3.6';
-  export * from '@redux-saga/core/types/ts3.6';
+  }        from '@redux-saga/core/types/ts3.6'
+  export * from '@redux-saga/core/types/ts3.6'
 }
 
 declare module '@redux-saga/types' {
@@ -57,6 +57,6 @@ declare module '@redux-saga/types' {
     StrictCombinatorEffect,
     END,
     Task,
-  }        from '@redux-saga/types/types/ts3.6';
-  export * from '@redux-saga/types/types/ts3.6';
+  }        from '@redux-saga/types/types/ts3.6'
+  export * from '@redux-saga/types/types/ts3.6'
 }

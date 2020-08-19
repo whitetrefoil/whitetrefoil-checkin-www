@@ -1,14 +1,14 @@
-import omit                          from 'object.omit';
-import { ActionType, createReducer } from 'typesafe-actions';
-import { Checkin }                   from '~/interfaces/checkin';
-import * as A                        from './actions';
+import omit                          from 'object.omit'
+import { ActionType, createReducer } from 'typesafe-actions'
+import { Checkin }                   from '~/interfaces/checkin'
+import * as A                        from './actions'
 
 
-type Action = ActionType<typeof A>;
+type Action = ActionType<typeof A>
 
 
 export interface State {
-  [venueId: string]: Saveable<Checkin>;
+  [venueId: string]: Saveable<Checkin>
 }
 
 
@@ -37,4 +37,4 @@ export default createReducer<State, Action>({})
       saveError: payload[1],
     },
   }))
-;
+

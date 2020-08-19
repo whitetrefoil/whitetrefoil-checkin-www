@@ -1,17 +1,17 @@
-import ky, { Options } from 'ky';
-import rootStore       from '../store';
+import ky, { Options } from 'ky'
+import rootStore       from '../store'
 
 
 interface RawResponse<T> {
-  code: number;
-  data: T|string;
+  code: number
+  data: T|string
 }
 
 
 export class ApiError extends Error {
   constructor(public code: number, message: string) {
-    super(message);
-    Object.setPrototypeOf(this, ApiError.prototype);
+    super(message)
+    Object.setPrototypeOf(this, ApiError.prototype)
   }
 }
 
@@ -24,9 +24,9 @@ const api = ky.create({
   hooks          : {
     beforeRequest: [
       request => {
-        const { token } = rootStore.getState().session;
+        const { token } = rootStore.getState().session
         if (token != null) {
-          request.headers.set('x-token', token);
+          request.headers.set('x-token', token)
         }
       },
     ],
@@ -35,29 +35,29 @@ const api = ky.create({
   retry          : 0,
   cache          : 'no-cache',
   throwHttpErrors: false,
-});
+})
 
 
 export const get = async <RES = unknown>(url: string, options?: Options): Promise<RES> => {
-  const res = await api.get(url, options);
+  const res = await api.get(url, options)
   if (res == null) {
-    throw new Error('network error');
+    throw new Error('network error')
   }
-  const json: RawResponse<RES> = await res.json();
+  const json: RawResponse<RES> = await res.json()
   if (!res.ok || json.code == null || json.code > 299) {
-    throw new ApiError(res.status, json.data as string || res.statusText);
+    throw new ApiError(res.status, json.data as string || res.statusText)
   }
-  return json.data as RES;
-};
+  return json.data as RES
+}
 
 export const post = async <RES = unknown>(url: string, options?: Options): Promise<RES> => {
-  const res = await api.post(url, options);
+  const res = await api.post(url, options)
   if (res == null) {
-    throw new Error('network error');
+    throw new Error('network error')
   }
-  const json: RawResponse<RES> = await res.json();
+  const json: RawResponse<RES> = await res.json()
   if (!res.ok || json.code == null || json.code > 299) {
-    throw new ApiError(res.status, json.data as string || res.statusText);
+    throw new ApiError(res.status, json.data as string || res.statusText)
   }
-  return json.data as RES;
-};
+  return json.data as RES
+}

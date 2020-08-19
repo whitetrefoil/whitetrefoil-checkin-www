@@ -1,12 +1,12 @@
-import omit                          from 'object.omit';
-import { ActionType, createReducer } from 'typesafe-actions';
-import { User }                      from '~/interfaces/user';
-import * as A                        from './actions';
+import omit                          from 'object.omit'
+import { ActionType, createReducer } from 'typesafe-actions'
+import { User }                      from '~/interfaces/user'
+import * as A                        from './actions'
 
 
 export interface State {
-  token?: string;
-  user?: User;
+  token?: string
+  user?: User
 }
 
 export default createReducer<State, ActionType<typeof A>>({})
@@ -26,4 +26,4 @@ export default createReducer<State, ActionType<typeof A>>({})
   .handleAction(A.FETCH_USER.failure, s => omit(s, ['token', 'user']))
 
   .handleAction(A.AUTH_ERROR, s => omit(s, ['token', 'user']))
-;
+

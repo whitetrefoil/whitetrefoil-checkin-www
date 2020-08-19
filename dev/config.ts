@@ -1,60 +1,60 @@
-import Chalk            from 'chalk';
-import log              from 'fancy-log';
-import meow, { Result } from 'meow';
-import path             from 'path';
+import Chalk            from 'chalk'
+import log              from 'fancy-log'
+import meow, { Result } from 'meow'
+import path             from 'path'
 
 // region - Interfaces
 
 interface IFlags {
-  help: boolean;
-  version: boolean;
-  development: boolean;
-  port: number;
-  backend: string;
-  base: string;
+  help: boolean
+  version: boolean
+  development: boolean
+  port: number
+  backend: string
+  base: string
 }
 
-type IMeowResult = Result<{}>&{ flags: IFlags };
+type IMeowResult = Result<EmptyObject>&{ flags: IFlags }
 
-type IBuildPathFn = (...path: string[]) => string;
+type IBuildPathFn = (...path: string[]) => string
 
 interface IConfig {
-  argv: IMeowResult;
-  pkg: unknown;
-  serverPort: number;
-  apiPrefixes: string[];
-  backendDest: string;
-  baseUrl: string;
+  argv: IMeowResult
+  pkg: unknown
+  serverPort: number
+  apiPrefixes: string[]
+  backendDest: string
+  baseUrl: string
 
-  root: IBuildPathFn;
-  absRoot: IBuildPathFn;
-  source: IBuildPathFn;
-  absSource: IBuildPathFn;
-  building: IBuildPathFn;
-  absBuilding: IBuildPathFn;
-  output: IBuildPathFn;
-  absOutput: IBuildPathFn;
-  outputByEnv: IBuildPathFn;
-  absOutputByEnv: IBuildPathFn;
+  root: IBuildPathFn
+  absRoot: IBuildPathFn
+  source: IBuildPathFn
+  absSource: IBuildPathFn
+  building: IBuildPathFn
+  absBuilding: IBuildPathFn
+  output: IBuildPathFn
+  absOutput: IBuildPathFn
+  outputByEnv: IBuildPathFn
+  absOutputByEnv: IBuildPathFn
 }
 
 // endregion
 
 // region - Default constants
 
-const DEFAULT_BASE = '';
-const DEFAULT_IS_DEVELOPMENT = false;
-const DEFAULT_PORT = 8888;
-const DEFAULT_PREFIX = ['/api/'];
-const DEFAULT_BACKEND = 'http://localhost:3333';
+const DEFAULT_BASE = ''
+const DEFAULT_IS_DEVELOPMENT = false
+const DEFAULT_PORT = 8888
+const DEFAULT_PREFIX = ['/api/']
+const DEFAULT_BACKEND = 'http://localhost:3333'
 
-const DEFAULT_BUILDING_DIR = '.building';
-const DEFAULT_OUTPUT_DIR = 'dist';
-const DEFAULT_SOURCE_BASE_DIR = 'src';
+const DEFAULT_BUILDING_DIR = '.building'
+const DEFAULT_OUTPUT_DIR = 'dist'
+const DEFAULT_SOURCE_BASE_DIR = 'src'
 
 // endregion
 
-const { blue, green, gray, yellow } = Chalk;
+const { blue, green, gray, yellow } = Chalk
 
 // region - Configure Meow
 
@@ -85,51 +85,51 @@ const argv: IMeowResult = meow(
   `,
   {
     flags: {
-      help       : { alias: 'h', type: 'boolean' },
-      version    : { alias: 'v', type: 'boolean' },
+      help       : { alias: 'h', type: 'boolean', default: false },
+      version    : { alias: 'v', type: 'boolean', default: false },
       development: { alias: 'd', type: 'boolean', default: DEFAULT_IS_DEVELOPMENT },
       port       : { alias: 'p', type: 'number', default: DEFAULT_PORT },
       backend    : { alias: 'e', type: 'string', default: DEFAULT_BACKEND },
       base       : { alias: 'b', type: 'string', default: DEFAULT_BASE },
     },
   },
-);
+)
 
 // endregion
 
 // region - Main exports
 
-const rootDir = path.join(__dirname, '..');
-const sourceDir = DEFAULT_SOURCE_BASE_DIR;
-const buildingDir = DEFAULT_BUILDING_DIR;
-const outputDir = DEFAULT_OUTPUT_DIR;
+const rootDir = path.join(__dirname, '..')
+const sourceDir = DEFAULT_SOURCE_BASE_DIR
+const buildingDir = DEFAULT_BUILDING_DIR
+const outputDir = DEFAULT_OUTPUT_DIR
 
-process.env.NODE_ENV = (argv.flags.development || DEFAULT_IS_DEVELOPMENT) ? 'development' : 'production';
-process.env.BABEL_ENV = process.env.NODE_ENV;
+process.env.NODE_ENV = argv.flags.development || DEFAULT_IS_DEVELOPMENT ? 'development' : 'production'
+process.env.BABEL_ENV = process.env.NODE_ENV
 
-log(`Initializing project in "${rootDir}" for ${process.env.NODE_ENV} environment.`);
+log(`Initializing project in "${rootDir}" for ${process.env.NODE_ENV} environment.`)
 
-const root: IBuildPathFn = (...pathInRoot) => path.join(rootDir, ...pathInRoot);
-const absRoot = root;
+const root: IBuildPathFn = (...pathInRoot) => path.join(rootDir, ...pathInRoot)
+const absRoot = root
 
-const source: IBuildPathFn = (...pathInSource) => path.join(sourceDir, ...pathInSource);
-const absSource: IBuildPathFn = (...pathInSource) => root(sourceDir, ...pathInSource);
+const source: IBuildPathFn = (...pathInSource) => path.join(sourceDir, ...pathInSource)
+const absSource: IBuildPathFn = (...pathInSource) => root(sourceDir, ...pathInSource)
 
-const building: IBuildPathFn = (...pathInBuilding) => path.join(buildingDir, ...pathInBuilding);
-const absBuilding: IBuildPathFn = (...pathInBuilding) => root(buildingDir, ...pathInBuilding);
+const building: IBuildPathFn = (...pathInBuilding) => path.join(buildingDir, ...pathInBuilding)
+const absBuilding: IBuildPathFn = (...pathInBuilding) => root(buildingDir, ...pathInBuilding)
 
-const output: IBuildPathFn = (...pathInOutput) => path.join(outputDir, ...pathInOutput);
-const absOutput: IBuildPathFn = (...pathInOutput) => root(outputDir, ...pathInOutput);
+const output: IBuildPathFn = (...pathInOutput) => path.join(outputDir, ...pathInOutput)
+const absOutput: IBuildPathFn = (...pathInOutput) => root(outputDir, ...pathInOutput)
 
 const outputByEnv: IBuildPathFn = (...pathInOutput) => {
-  const dir = process.env.NODE_ENV === 'development' ? buildingDir : outputDir;
-  return path.join(dir, ...pathInOutput);
-};
+  const dir = process.env.NODE_ENV === 'development' ? buildingDir : outputDir
+  return path.join(dir, ...pathInOutput)
+}
 
 const absOutputByEnv: IBuildPathFn = (...pathInOutput) => {
-  const dir = process.env.NODE_ENV === 'development' ? buildingDir : outputDir;
-  return root(dir, ...pathInOutput);
-};
+  const dir = process.env.NODE_ENV === 'development' ? buildingDir : outputDir
+  return root(dir, ...pathInOutput)
+}
 
 const config: IConfig = {
   argv,
@@ -148,8 +148,8 @@ const config: IConfig = {
   absOutput,
   outputByEnv,
   absOutputByEnv,
-};
+}
 
 // endregion
 
-export default config;
+export default config

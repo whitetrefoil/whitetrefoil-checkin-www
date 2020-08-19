@@ -1,20 +1,20 @@
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import * as fs                    from 'fs-extra';
-import HtmlWebpackPlugin          from 'html-webpack-plugin';
-import MiniCssExtractPlugin       from 'mini-css-extract-plugin';
-import * as path                  from 'path';
-import { TsconfigPathsPlugin }    from 'tsconfig-paths-webpack-plugin';
-import * as webpack               from 'webpack';
-import { BundleAnalyzerPlugin }   from 'webpack-bundle-analyzer';
-import WorkboxPlugin              from 'workbox-webpack-plugin';
-import config                     from '../config';
-import htmlLoaderOptions          from './html-loader-options';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import * as fs                    from 'fs-extra'
+import HtmlWebpackPlugin          from 'html-webpack-plugin'
+import MiniCssExtractPlugin       from 'mini-css-extract-plugin'
+import * as path                  from 'path'
+import { TsconfigPathsPlugin }    from 'tsconfig-paths-webpack-plugin'
+import * as webpack               from 'webpack'
+import { BundleAnalyzerPlugin }   from 'webpack-bundle-analyzer'
+import WorkboxPlugin              from 'workbox-webpack-plugin'
+import config                     from '../config'
+import htmlLoaderOptions          from './html-loader-options'
 
 
-const SIZE_14KB = 14336;
+const SIZE_14KB = 14336
 
 // See https://github.com/vuejs/vue-loader/issues/678#issuecomment-370965224
-const babelrc = fs.readJsonSync(path.join(__dirname, '../../.babelrc'));
+const babelrc = fs.readJsonSync(path.join(__dirname, '../../.babelrc'))
 
 
 const prodConfig: webpack.Configuration = {
@@ -37,7 +37,7 @@ const prodConfig: webpack.Configuration = {
     },
     plugins   : [
       new TsconfigPathsPlugin({
-        configFile: config.absRoot('tsconfig.json'),
+        configFile: config.absSource('tsconfig.json'),
       }),
     ],
   },
@@ -53,9 +53,19 @@ const prodConfig: webpack.Configuration = {
   module: {
     rules: [
       {
-        test   : /\.html$/,
-        exclude: /node_modules/,
+        enforce: 'pre',
+        test   : /\.[jt]sx?$/u,
         use    : [
+          'source-map-loader',
+          // 'eslint-loader?emitWarning',
+        ],
+        include: [
+          config.absSource(),
+        ],
+      },
+      {
+        test: /\.html$/u,
+        use : [
           {
             loader : 'html-loader',
             options: htmlLoaderOptions,
@@ -63,7 +73,7 @@ const prodConfig: webpack.Configuration = {
         ],
       },
       {
-        test: /\.tsx?$/,
+        test: /\.tsx?$/u,
         use : [
           {
             loader : 'babel-loader',
@@ -73,12 +83,13 @@ const prodConfig: webpack.Configuration = {
             loader : 'ts-loader',
             options: {
               transpileOnly: true,
+              configFile   : config.absSource('tsconfig.json'),
             },
           },
         ],
       },
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$/u,
         use : [
           {
             loader : 'babel-loader',
@@ -87,35 +98,37 @@ const prodConfig: webpack.Configuration = {
         ],
       },
       {
-        test: /\.css$/,
+        test: /\.css$/u,
         use : [
           MiniCssExtractPlugin.loader,
           {
             loader : 'css-loader',
             options: {
-              modules         : {
-                mode          : 'global',
-                localIdentName: '[hash:base64]',
+              modules      : {
+                mode                  : 'global',
+                exportGlobals         : false,
+                localIdentName        : '[hash:base64]',
+                exportLocalsConvention: 'camelCase',
               },
-              localsConvention: 'camelCase',
-              importLoaders   : 1,
+              importLoaders: 1,
             },
           },
           'postcss-loader',
         ],
       },
       {
-        test: /\.s[ac]ss$/,
+        test: /\.s[ac]ss$/u,
         use : [
           MiniCssExtractPlugin.loader,
           {
             loader : 'css-loader',
             options: {
-              modules         : {
-                mode          : 'global',
-                localIdentName: '[hash:base64]',
+              modules      : {
+                mode                  : 'global',
+                exportGlobals         : false,
+                localIdentName        : '[hash:base64]',
+                exportLocalsConvention: 'camelCase',
               },
-              localsConvention: 'camelCase',
               importLoaders   : 4,
             },
           },
@@ -134,7 +147,7 @@ const prodConfig: webpack.Configuration = {
         ],
       },
       {
-        test: /manifest\.webmanifest$/,
+        test: /manifest\.webmanifest$/u,
         use : [
           {
             loader : 'file-loader',
@@ -145,10 +158,10 @@ const prodConfig: webpack.Configuration = {
         ],
       },
       {
-        test : /\.(?:png|jpe?g|gif|svg|webp|webm|woff2?|ttf|eot|ico)(?:\?.*)?$/,
+        test : /\.(?:png|jpe?g|gif|svg|webp|webm|woff2?|ttf|eot|ico)(?:\?.*)?$/u,
         oneOf: [
           {
-            test: /icon\.c\.png$/,
+            test: /icon\.c\.png$/u,
             use : [
               {
                 loader : 'file-loader',
@@ -159,7 +172,7 @@ const prodConfig: webpack.Configuration = {
             ],
           },
           {
-            test: /\.svg(?:\?.*)?$/,
+            test: /\.svg(?:\?.*)?$/u,
             use : [
               {
                 loader : 'url-loader',
@@ -176,7 +189,7 @@ const prodConfig: webpack.Configuration = {
             ],
           },
           {
-            test: /\.weixin\.(?:png|jpe?g|gif|svg|webp|webm|woff2?|ttf|eot|ico)(?:\?.*)?$/,
+            test: /\.weixin\.(?:png|jpe?g|gif|svg|webp|webm|woff2?|ttf|eot|ico)(?:\?.*)?$/u,
             use : [
               {
                 loader : 'file-loader',
@@ -212,7 +225,7 @@ const prodConfig: webpack.Configuration = {
 
   stats: {
     // See: https://github.com/TypeStrong/ts-loader#transpileonly-boolean-defaultfalse
-    warningsFilter: /export .* was not found in/,
+    warningsFilter: /export .* was not found in/u,
   },
 
   node: {
@@ -236,7 +249,7 @@ const prodConfig: webpack.Configuration = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       typescript: {
-        configFile       : config.absRoot('tsconfig.json'),
+        configFile       : config.absSource('tsconfig.json'),
         diagnosticOptions: {
           semantic : true,
           syntactic: true,
@@ -276,6 +289,6 @@ const prodConfig: webpack.Configuration = {
       base          : `${config.baseUrl}/`,
     }),
   ],
-};
+}
 
-export default prodConfig;
+export default prodConfig

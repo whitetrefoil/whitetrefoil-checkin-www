@@ -1,10 +1,10 @@
-import { ActionType, createReducer } from 'typesafe-actions';
-import * as A                        from './actions';
+import { ActionType, createReducer } from 'typesafe-actions'
+import * as A                        from './actions'
 
-type Action = ActionType<typeof A>;
+type Action = ActionType<typeof A>
 
 export interface State {
-  [venueId: string]: number;
+  [venueId: string]: number
 }
 
 export default createReducer<State, Action>({})
@@ -13,4 +13,4 @@ export default createReducer<State, Action>({})
     ...s,
     [payload]: Date.now(),
   }))
-;
+

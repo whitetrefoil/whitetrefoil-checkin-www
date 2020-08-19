@@ -1,18 +1,19 @@
-import c                        from 'classnames';
-import { useCallback, useMemo } from 'preact/hooks';
-import React, { FC, memo }      from 'react';
-import { useVal, ValOf }        from '~/hooks/use-val';
-import { Checkin }              from '~/interfaces/checkin';
-import { Venue }                from '~/interfaces/venue';
-import * as css                 from './index.scss';
-import LastCheckin              from './LastCheckin';
+import c                        from 'classnames'
+import { useCallback, useMemo } from 'preact/hooks'
+import React, { FC, memo }      from 'react'
+import { useHistory }           from 'react-router'
+import { useVal, ValOf }        from '~/hooks/use-val'
+import { Checkin }              from '~/interfaces/checkin'
+import { Venue }                from '~/interfaces/venue'
+import * as css                 from './index.scss'
+import LastCheckin              from './LastCheckin'
 
 
 const ListItem: FC<{
-  venue: Venue;
-  lastCheckin: number|null;
-  $checkinStatus: ValOf<Saveable<Checkin>|nil>;
-  onClick(venue: Venue): unknown;
+  venue: Venue
+  lastCheckin: number|null
+  $checkinStatus: ValOf<Saveable<Checkin>|nil>
+  onClick(venue: Venue): unknown
 }> = ({
   venue,
   lastCheckin,
@@ -20,14 +21,19 @@ const ListItem: FC<{
   onClick: oc,
 }) => {
 
-  const { data: status, saving, saveError } = useVal($checkinStatus) ?? { data: undefined };
+  const history = useHistory()
+  const { data: status, saving, saveError } = useVal($checkinStatus) ?? { data: undefined }
 
   const onClick = useCallback(() => {
-    if (status != null || saving) {
-      return;
+    if (saving) {
+      return
     }
-    oc(venue);
-  }, [oc, saving, status, venue]);
+    if (status != null) {
+      history.push({ pathname: `/v/${venue.id}` })
+      return
+    }
+    oc(venue)
+  }, [history, oc, saving, status, venue])
 
   const klasses = useMemo(() => c(
     css.item,
@@ -36,9 +42,9 @@ const ListItem: FC<{
         status != null ? css.success :
           undefined,
     {
-      [css.isMayor]: status != null && status.isMayor,
+      [css.isMayor]: status?.isMayor,
     },
-  ), [saveError, saving, status]);
+  ), [saveError, saving, status])
 
   return (
     <li className={klasses} onClick={onClick}>
@@ -61,8 +67,8 @@ const ListItem: FC<{
 
       <div className={css.loadingBg}/>
     </li>
-  );
-};
+  )
+}
 
 
-export default memo(ListItem);
+export default memo(ListItem)

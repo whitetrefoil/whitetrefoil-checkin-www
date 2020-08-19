@@ -1,21 +1,21 @@
-import { Checkin } from '~/interfaces/checkin';
-import { Geo }     from '~/interfaces/geo';
-import { post }    from './base';
+import { Checkin } from '~/interfaces/checkin'
+import { Geo }     from '~/interfaces/geo'
+import { post }    from './base'
 
 
 interface RawRes {
   // eslint-disable-next-line camelcase
-  is_mayor: boolean;
-  score: number;
-  url: string;
+  is_mayor: boolean
+  score: number
+  url: string
   reasons: {
-    icon: string;
-    message: string;
-    points: string;
-  };
+    icon: string
+    message: string
+    points: string
+  }
 }
 
-export type AddCheckinResponse = Checkin;
+export type AddCheckinResponse = Checkin
 
 
 export const addCheckin = async(
@@ -38,4 +38,4 @@ export const addCheckin = async(
     score  : res.score,
     url    : res.url,
     reasons: res.reasons,
-  }));
+  }))

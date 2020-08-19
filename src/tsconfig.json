@@ -1,0 +1,14 @@
+{
+  "extends"        : "../tsconfig.json",
+  "compilerOptions": {
+    "jsx"   : "react",
+    "lib"   : ["esnext", "dom", "dom.iterable"],
+    "module": "esnext",
+    "target": "esnext"
+  },
+  "include"        : [
+    "../declarations/**/*.d.ts",
+    "**/*.tsx",
+    "**/*.ts"
+  ]
+}

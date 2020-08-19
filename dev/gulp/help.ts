@@ -1,6 +1,7 @@
-import { task } from 'gulp';
-import config   from '../config';
+import { task } from 'gulp'
+import config   from '../config'
 
 task('help', () => {
-  console.error(config.argv.help);
-});
+  // eslint-disable-next-line no-console
+  console.error(config.argv.help)
+})

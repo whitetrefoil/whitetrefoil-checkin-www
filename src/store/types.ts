@@ -1,4 +1,4 @@
-import { ActionType, PayloadAction, PayloadActionCreator } from 'typesafe-actions';
+import { ActionType, PayloadAction, PayloadActionCreator } from 'typesafe-actions'
 
 
 declare global {
@@ -12,23 +12,23 @@ declare global {
     |ActionType<typeof import('~/features/list/actions')>
     // |ActionType<typeof import('~/features/detail/actions')>
     |ActionType<typeof import('~/features/search/actions')>
-    ;
+
 
   interface RootState {
-    checkin: import('./checkin/reducer').State;
-    geo: import('./geo/reducer').State;
-    history: import('./history/reducer').State;
-    session: import('./session/reducer').State;
+    checkin: import('./checkin/reducer').State
+    geo: import('./geo/reducer').State
+    history: import('./history/reducer').State
+    session: import('./session/reducer').State
     // loading: import('./loading/reducer').State;
     // message: import('./message/reducer').State;
-    list: import('~/features/list/reducer').State;
+    list: import('~/features/list/reducer').State
     // detail: import('~/features/detail/reducer').State;
-    search: import('~/features/search/reducer').State;
+    search: import('~/features/search/reducer').State
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  export type PA<T> = PayloadAction<string, T>;
-  export type PAC<T> = PayloadActionCreator<string, T>;
+  export type PA<T> = PayloadAction<string, T>
+  export type PAC<T> = PayloadActionCreator<string, T>
 }
 // export type AnyA<R = any> = RootAction|ThunkA<R>;
 // export type AnyAC<R = any> = ThunkAC<R>|((...args: any[]) => RootAction);
@@ -38,8 +38,8 @@ declare global {
 
 declare module 'typesafe-actions' {
   interface Types {
-    RootAction: RootAction;
+    RootAction: RootAction
   }
 
-  export type NoMeta<T> = [T, never];
+  export type NoMeta<T> = [T, never]
 }
