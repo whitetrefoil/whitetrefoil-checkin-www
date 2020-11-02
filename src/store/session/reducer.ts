@@ -1,7 +1,8 @@
-import omit                          from 'object.omit'
-import { ActionType, createReducer } from 'typesafe-actions'
-import { User }                      from '~/interfaces/user'
-import * as A                        from './actions'
+import omit                from 'object.omit'
+import type { ActionType } from 'typesafe-actions'
+import { createReducer }   from 'typesafe-actions'
+import type { User }       from '~/interfaces/user'
+import * as A              from './actions'
 
 
 export interface State {

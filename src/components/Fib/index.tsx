@@ -1,8 +1,9 @@
-import { prevented }             from '@whitetrefoil/jsx-sp-events/react'
+import { prevented }             from '@whitetrefoil/jsx-sp-events'
 import { useState }              from 'preact/hooks'
-import React, { FC, memo }       from 'react'
+import type { FC }               from 'react'
+import React, { memo }           from 'react'
 import { Redirect, useLocation } from 'react-router'
-import * as css                  from './index.scss'
+import css                       from './index.scss'
 
 
 const Fib: FC = () => {

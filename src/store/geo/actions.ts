@@ -1,5 +1,5 @@
 import { createAction } from 'typesafe-actions'
-import { Geo }          from '~/interfaces/geo'
+import type { Geo }     from '~/interfaces/geo'
 
 export const GET = createAction('geo/GET')<void>()
 export const SET = createAction('geo/SET')<Geo>()

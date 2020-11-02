@@ -1,11 +1,12 @@
 import { useEffect }           from 'preact/hooks'
-import React, { FC, memo }     from 'react'
+import type { FC }             from 'react'
+import React, { memo }         from 'react'
 import { useDispatch }         from 'react-redux'
 import List                    from '~/components/List'
 import MainNav                 from '~/components/MainNav'
 import { useRS }               from '~/hooks/use-root-selector'
 import { useTitle }            from '~/hooks/use-title'
-import { Venue }               from '~/interfaces/venue'
+import type { Venue }          from '~/interfaces/venue'
 import { CHECKIN }             from '~/store/checkin/actions'
 import { $$checkinById }       from '~/store/checkin/selectors'
 import { GET }                 from '~/store/geo/actions'
@@ -15,7 +16,7 @@ import { AUTH_ERROR }          from '~/store/session/actions'
 import { $user }               from '~/store/session/selectors'
 import { FETCH_VENUES, RESET } from './actions'
 import { $venues }             from './selectors'
-// import * as css from './index.scss';
+// import css from './index.scss';
 
 
 const ListFeature: FC = () => {

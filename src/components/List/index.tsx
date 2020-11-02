@@ -1,20 +1,22 @@
-import React, { FC, memo } from 'react'
-import { RS }              from '~/hooks/use-root-selector'
-import { useVal, ValOf }   from '~/hooks/use-val'
-import { Checkin }         from '~/interfaces/checkin'
-import { Geo }             from '~/interfaces/geo'
-import { Venue }           from '~/interfaces/venue'
-import * as css            from './index.scss'
-import ListItem            from './ListItem'
+import type { FC }      from 'react'
+import React, { memo }  from 'react'
+import type { RS }      from '~/hooks/use-root-selector'
+import type { ValOf }   from '~/hooks/use-val'
+import { useVal }       from '~/hooks/use-val'
+import type { Checkin } from '~/interfaces/checkin'
+import type { Geo }     from '~/interfaces/geo'
+import type { Venue }   from '~/interfaces/venue'
+import css              from './index.scss'
+import ListItem         from './ListItem'
 
 
 const List: FC<{
   $geo: ValOf<Geo|nil>
   $history: ValOf<Record<string, number>|nil>
   $venues: ValOf<Loadable<Venue[]>>
-  $$checkinById(venueId: string): RS<Saveable<Checkin>|nil>
-  onItemClick(venue: Venue): unknown
-  onAuthError(): unknown
+  $$checkinById: (venueId: string) => RS<Saveable<Checkin>|nil>
+  onItemClick: (venue: Venue) => unknown
+  onAuthError: () => unknown
 }> = ({
   $geo,
   $history,
@@ -37,7 +39,7 @@ const List: FC<{
     return <div className={css.message}>Acquiring GPS location&hellip;</div>
   }
 
-  if (loading) {
+  if (loading === true) {
     return <div className={css.message}>Acquiring nearby venues&hellip;</div>
   }
 

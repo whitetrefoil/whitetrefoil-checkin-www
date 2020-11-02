@@ -1,5 +1,5 @@
 import { put, select, takeLatest }     from 'redux-saga/effects'
-import { ActionType }                  from 'typesafe-actions'
+import type { ActionType }             from 'typesafe-actions'
 import { FETCH_USER }                  from '~/store/session/actions'
 import { getInStorage, updateStorage } from '~/utils/in-storage'
 import { $user }                       from '../session/selectors'
@@ -16,7 +16,7 @@ function *init(action: ActionType<typeof FETCH_USER.success>) {
 }
 
 function *append(action: ActionType<typeof APPEND>) {
-  const user = yield select($user)
+  const user = (yield select($user)) as ReturnType<typeof $user>
   const venueId = action.payload
   if (user == null || venueId == null) {
     return

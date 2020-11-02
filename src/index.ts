@@ -28,13 +28,13 @@ async function bootstrap() {
   rootDiv.id = 'root'
   document.body.appendChild(rootDiv)
 
-  await render(rootDiv)
+  render(rootDiv)
 }
 
 
 window.addEventListener('error', ev => {
   error(ev)
-  if (ev.error?.name === 'ChunkLoadError') {
+  if ((ev.error as Error)?.name === 'ChunkLoadError') {
     // Webpack async module load failed.
     // TODO: Handle error
     window.location.assign('/error')

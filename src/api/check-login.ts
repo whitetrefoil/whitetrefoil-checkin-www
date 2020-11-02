@@ -1,5 +1,5 @@
-import { User } from '~/interfaces/user'
-import { post } from './base'
+import type { User } from '~/interfaces/user'
+import { post }      from './base'
 
 
 interface RawRes {
@@ -23,13 +23,13 @@ export interface CheckLoginResponse {
 }
 
 export const checkLogin = async(code: string): Promise<CheckLoginResponse> => post<RawRes>('login', {
-    json: { code },
-  }).then(res => ({
-    token: res.token,
-    user : {
-      id       : res.user.id,
-      firstName: res.user.first_name,
-      lastName : res.user.last_name,
-      photo    : [res.user.photo.prefix, res.user.photo.suffix],
-    },
-  }))
+  json: { code },
+}).then(res => ({
+  token: res.token,
+  user : {
+    id       : res.user.id,
+    firstName: res.user.first_name,
+    lastName : res.user.last_name,
+    photo    : [res.user.photo.prefix, res.user.photo.suffix],
+  },
+}))

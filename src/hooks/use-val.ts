@@ -1,4 +1,5 @@
-import { RS, useRS } from './use-root-selector'
+import type { RS } from './use-root-selector'
+import { useRS }   from './use-root-selector'
 
 export type ValOf<T> = T|RS<T>
 

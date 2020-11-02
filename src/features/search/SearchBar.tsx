@@ -1,11 +1,12 @@
+import { prevented }                                from '@whitetrefoil/jsx-sp-events'
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
-import React, { ChangeEvent, FC, FormEvent, memo }  from 'react'
-import * as css                                     from './index.scss'
-import { prevented } from '@whitetrefoil/jsx-sp-events/react'
+import type { ChangeEvent, FC, FormEvent }          from 'react'
+import React, { memo }                              from 'react'
+import css                                          from './index.scss'
 
 
 const SearchBar: FC<{
-  onSearch(val: string): unknown
+  onSearch: (val: string) => unknown
 }> = ({
   onSearch,
 }) => {

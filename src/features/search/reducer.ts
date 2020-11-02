@@ -1,7 +1,8 @@
-import omit                          from 'object.omit'
-import { ActionType, createReducer } from 'typesafe-actions'
-import { Venue }                     from '~/interfaces/venue'
-import * as A                        from './actions'
+import omit                from 'object.omit'
+import type { ActionType } from 'typesafe-actions'
+import { createReducer }   from 'typesafe-actions'
+import type { Venue }      from '~/interfaces/venue'
+import * as A              from './actions'
 
 
 type Action = ActionType<typeof A>

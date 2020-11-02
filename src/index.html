@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta
-      name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
   >
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="keywords" content="Foursquare 4sq checkin check-in">
-  <meta name="description" content="Quick check-in tool for 4sq">
-  <link rel="icon" href="./icon.c.png" type="image/png">
-  <link rel="manifest" href="./manifest.webmanifest">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <meta content="Foursquare 4sq checkin check-in" name="keywords">
+  <meta content="Quick check-in tool for 4sq" name="description">
+  <link href="./icon.c.png" rel="icon" type="image/png">
+  <link href="./manifest.webmanifest" rel="manifest">
   <title>Simple Check-in</title>
 </head>
 
@@ -41,13 +41,13 @@
 
 <script type="text/javascript">
 function showWarning() {
-  var appElem     = document.getElementById('app');
-  var warningElem = document.getElementById('loading-error');
-  if (warningElem == null || (appElem != null && appElem.innerHTML.length > 0)) { return; }
-  warningElem.removeAttribute('style');
+  var appElem = document.getElementById('app')
+  var warningElem = document.getElementById('loading-error')
+  if (warningElem == null || (appElem != null && appElem.innerHTML.length > 0)) { return }
+  warningElem.removeAttribute('style')
 }
 
-setTimeout('showWarning()', 3000);
+setTimeout('showWarning()', 3000)
 </script>
 
 <noscript>

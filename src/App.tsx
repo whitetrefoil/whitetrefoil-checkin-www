@@ -1,5 +1,6 @@
 import { useEffect, useMemo }      from 'preact/hooks'
-import React, { FC, memo }         from 'react'
+import type { FC }                 from 'react'
+import React, { memo }             from 'react'
 import { useDispatch }             from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router'
 import Fib                         from './components/Fib'
@@ -11,7 +12,7 @@ import { useRS }                   from './hooks/use-root-selector'
 import { FETCH_USER }              from './store/session/actions'
 import { $token, $user }           from './store/session/selectors'
 
-// import * as css from './index.scss';
+// import css from './index.scss';
 
 
 const App: FC = () => {

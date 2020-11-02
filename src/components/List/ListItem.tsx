@@ -1,11 +1,13 @@
 import c                        from 'classnames'
 import { useCallback, useMemo } from 'preact/hooks'
-import React, { FC, memo }      from 'react'
+import type { FC }              from 'react'
+import React, { memo }          from 'react'
 import { useHistory }           from 'react-router'
-import { useVal, ValOf }        from '~/hooks/use-val'
-import { Checkin }              from '~/interfaces/checkin'
-import { Venue }                from '~/interfaces/venue'
-import * as css                 from './index.scss'
+import type { ValOf }           from '~/hooks/use-val'
+import { useVal }               from '~/hooks/use-val'
+import type { Checkin }         from '~/interfaces/checkin'
+import type { Venue }           from '~/interfaces/venue'
+import css                      from './index.scss'
 import LastCheckin              from './LastCheckin'
 
 
@@ -13,7 +15,7 @@ const ListItem: FC<{
   venue: Venue
   lastCheckin: number|null
   $checkinStatus: ValOf<Saveable<Checkin>|nil>
-  onClick(venue: Venue): unknown
+  onClick: (venue: Venue) => unknown
 }> = ({
   venue,
   lastCheckin,
@@ -25,7 +27,7 @@ const ListItem: FC<{
   const { data: status, saving, saveError } = useVal($checkinStatus) ?? { data: undefined }
 
   const onClick = useCallback(() => {
-    if (saving) {
+    if (saving === true) {
       return
     }
     if (status != null) {
@@ -37,7 +39,7 @@ const ListItem: FC<{
 
   const klasses = useMemo(() => c(
     css.item,
-    saving ? css.loading :
+    saving === true ? css.loading :
       saveError != null ? css.failed :
         status != null ? css.success :
           undefined,
@@ -56,7 +58,7 @@ const ListItem: FC<{
             <span className={css.mayor}/>
             {venue.name}
           </h3>
-          {lastCheckin && <LastCheckin ms={lastCheckin}/>}
+          {lastCheckin != null && <LastCheckin ms={lastCheckin}/>}
         </header>
 
         <div className={css.location}>

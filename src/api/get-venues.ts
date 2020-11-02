@@ -1,6 +1,6 @@
-import { Geo }   from '~/interfaces/geo'
-import { Venue } from '~/interfaces/venue'
-import { get }   from './base'
+import type { Geo }   from '~/interfaces/geo'
+import type { Venue } from '~/interfaces/venue'
+import { get }        from './base'
 
 export interface GetVenuesResponse {
   venues: Venue[]

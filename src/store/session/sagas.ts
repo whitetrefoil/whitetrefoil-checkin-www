@@ -1,6 +1,6 @@
 import omit                                          from 'object.omit'
 import { call, fork, put, select, take, takeLatest } from 'redux-saga/effects'
-import { ActionType }                                from 'typesafe-actions'
+import type { ActionType }                           from 'typesafe-actions'
 import { checkLogin }                                from '~/api/check-login'
 import { getUserDetail }                             from '~/api/get-user.detail'
 import { updateStorage }                             from '~/utils/in-storage'
@@ -10,9 +10,9 @@ import * as $                                        from './selectors'
 
 function *doCheckToken(action: ActionType<typeof A.LOGIN.request>) {
   try {
-    const res: AsyncReturnValue<typeof checkLogin> = yield call(checkLogin, action.payload)
+    const res = (yield call(checkLogin, action.payload)) as ResolvedReturn<typeof checkLogin>
     yield put(A.LOGIN.success(res))
-  } catch (e) {
+  } catch (e: unknown) {
     yield put(A.LOGIN.failure(e))
   }
 }
@@ -26,15 +26,15 @@ function *doSaveToken(token?: string) {
 }
 
 function *doFetchUser() {
-  const token = yield select($.$token)
+  const token = (yield select($.$token)) as ReturnType<typeof $.$token>
   if (token == null) {
     yield put(A.FETCH_USER.failure(new Error('no token found')))
     return
   }
   try {
-    const res: AsyncReturnValue<typeof getUserDetail> = yield call(getUserDetail, token)
+    const res = (yield call(getUserDetail, token)) as ResolvedReturn<typeof getUserDetail>
     yield put(A.FETCH_USER.success(res))
-  } catch (e) {
+  } catch (e: unknown) {
     yield put(A.FETCH_USER.failure(e))
   }
 }

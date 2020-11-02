@@ -1,6 +1,6 @@
-import { Checkin } from '~/interfaces/checkin'
-import { Geo }     from '~/interfaces/geo'
-import { post }    from './base'
+import type { Checkin } from '~/interfaces/checkin'
+import type { Geo }     from '~/interfaces/geo'
+import { post }         from './base'
 
 
 interface RawRes {

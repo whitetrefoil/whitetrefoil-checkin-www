@@ -1,4 +1,4 @@
-import { ActionType, PayloadAction, PayloadActionCreator } from 'typesafe-actions'
+import type { ActionType, PayloadAction, PayloadActionCreator } from 'typesafe-actions'
 
 
 declare global {

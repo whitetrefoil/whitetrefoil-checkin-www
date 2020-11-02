@@ -3,7 +3,7 @@ import gulp             from 'gulp'
 import webpack          from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import config           from '../config'
-import webpackConfig    from '../webpack';
+import webpackConfig    from '../webpack'
 
 
 gulp.task('devServer', async done => {
@@ -12,14 +12,11 @@ gulp.task('devServer', async done => {
     host              : '0.0.0.0',
     port              : config.serverPort,
     publicPath        : `${config.baseUrl}/`,
-    contentBase       : [
-      config.absOutputByEnv(''),
-      config.absRoot('stubapi/static'),
-      config.absRoot(''),
-    ],
+    contentBase       : [config.absRoot('stubapi/static'), config.absSource('')],
     hot               : true,
     noInfo            : false,
-    index             : 'index.html',
+    // index             : 'index.html',
+    clientLogLevel    : 'error',
     injectClient      : compilerConfig => (compilerConfig as unknown as webpack.Configuration)?.target !== 'webworker',
     injectHot         : compilerConfig => (compilerConfig as unknown as webpack.Configuration)?.target !== 'webworker',
     // Base on 'errors-only' + filter ts-loader transpileOnly related warnings.

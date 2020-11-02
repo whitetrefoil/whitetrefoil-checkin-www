@@ -1,5 +1,6 @@
-import { ActionType, createReducer } from 'typesafe-actions'
-import * as A                        from './actions'
+import type { ActionType } from 'typesafe-actions'
+import { createReducer }   from 'typesafe-actions'
+import * as A              from './actions'
 
 type Action = ActionType<typeof A>
 

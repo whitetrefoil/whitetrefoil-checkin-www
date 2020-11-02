@@ -1,6 +1,6 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
-import { Geo }                             from '~/interfaces/geo'
-import { Venue }                           from '~/interfaces/venue'
+import type { Geo }                        from '~/interfaces/geo'
+import type { Venue }                      from '~/interfaces/venue'
 
 
 export const FETCH_VENUES = createAsyncAction(

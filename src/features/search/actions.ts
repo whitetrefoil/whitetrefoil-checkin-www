@@ -1,6 +1,7 @@
-import { createAction, createAsyncAction, NoMeta } from 'typesafe-actions'
-import { Geo }                                     from '~/interfaces/geo'
-import { Venue }                                   from '~/interfaces/venue'
+import type { NoMeta }                     from 'typesafe-actions'
+import { createAction, createAsyncAction } from 'typesafe-actions'
+import type { Geo }                        from '~/interfaces/geo'
+import type { Venue }                      from '~/interfaces/venue'
 
 
 export const SEARCH = createAction('search/INPUT')<string>()

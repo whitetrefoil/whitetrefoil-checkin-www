@@ -15,10 +15,10 @@ export const getInStorage = (): InStorage => {
   const inStorageJson: string|null = window.localStorage.getItem('whitetrefoil-checkin-temp')
   if (inStorageJson != null && inStorageJson !== '') {
     try {
-      const parsed: InStorage|null|undefined = JSON.parse(atob(inStorageJson))
+      const parsed = JSON.parse(atob(inStorageJson)) as InStorage|null|undefined
       inStorage.t = parsed?.t
       inStorage.h = parsed?.h
-    } catch (e) {
+    } catch (e: unknown) {
       warn('Failed to parse cache in localStorage, will reset.  Reason:', e)
       window.localStorage.removeItem('whitetrefoil-checkin-temp')
     }

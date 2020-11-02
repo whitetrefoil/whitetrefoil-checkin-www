@@ -1,10 +1,11 @@
-interface Indexed<T> {[key: string]: T}
+interface Dict<T> {[key: string]: T}
 
-type SimpleSet = Indexed<true>
+type SimpleSet = Dict<true>
 
 type Resolved<T> = T extends PromiseLike<infer F> ? F : T
-
-type AsyncReturnValue<T> = T extends (...args: any[]) => PromiseLike<infer F> ? F : never
+type ResolvedReturn<T> = T extends (...args: any[]) => PromiseLike<infer F> ? F
+  : T extends (...args: any[]) => infer F ? F
+    : T
 
 interface Loadable<T> {
   data?: T

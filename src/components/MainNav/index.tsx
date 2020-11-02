@@ -1,9 +1,10 @@
-import { prevented }       from '@whitetrefoil/jsx-sp-events/react'
-import React, { FC, memo } from 'react'
-import { ValOf }           from '~/hooks/use-val'
-import { User }            from '~/interfaces/user'
-import Avatar              from './Avatar'
-import * as css            from './index.scss'
+import { prevented }   from '@whitetrefoil/jsx-sp-events'
+import type { FC }     from 'react'
+import React, { memo } from 'react'
+import type { ValOf }  from '~/hooks/use-val'
+import type { User }   from '~/interfaces/user'
+import Avatar          from './Avatar'
+import css             from './index.scss'
 
 
 const MainNav: FC<{

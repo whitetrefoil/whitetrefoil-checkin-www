@@ -1,6 +1,7 @@
-import { createAsyncAction, NoMeta } from 'typesafe-actions'
-import { Checkin }                   from '~/interfaces/checkin'
-import { Geo }                       from '~/interfaces/geo'
+import type { NoMeta }       from 'typesafe-actions'
+import { createAsyncAction } from 'typesafe-actions'
+import type { Checkin }      from '~/interfaces/checkin'
+import type { Geo }          from '~/interfaces/geo'
 
 
 export const CHECKIN = createAsyncAction(

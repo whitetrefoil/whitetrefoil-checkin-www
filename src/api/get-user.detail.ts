@@ -1,5 +1,5 @@
-import { User } from '~/interfaces/user'
-import { get }  from './base'
+import type { User } from '~/interfaces/user'
+import { get }       from './base'
 
 
 interface RawRes {
@@ -17,12 +17,12 @@ interface RawRes {
 export type GetUserDetailResponse = User
 
 export const getUserDetail = async(token: string): Promise<GetUserDetailResponse> => get<RawRes>('users', {
-    headers: {
-      'x-token': token,
-    },
-  }).then(user => ({
-    id       : user.id,
-    firstName: user.first_name,
-    lastName : user.last_name,
-    photo    : [user.photo.prefix, user.photo.suffix],
-  }))
+  headers: {
+    'x-token': token,
+  },
+}).then(user => ({
+  id       : user.id,
+  firstName: user.first_name,
+  lastName : user.last_name,
+  photo    : [user.photo.prefix, user.photo.suffix],
+}))

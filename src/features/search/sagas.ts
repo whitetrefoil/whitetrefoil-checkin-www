@@ -1,16 +1,17 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { getVenues }             from '~/api/get-venues'
-import { Geo }                   from '~/interfaces/geo'
+import type { Geo }              from '~/interfaces/geo'
 import { FETCH_VENUES }          from './actions'
 
 
 function *doFetchVenues(action: PA<[string, Geo]>) {
   const [search, geo] = action.payload
   try {
-    const { venues }: AsyncReturnValue<typeof getVenues> = yield call(getVenues, geo, search)
+    const { venues } = (yield call(getVenues, geo, search)) as ResolvedReturn<typeof getVenues>
     yield put(FETCH_VENUES.success(venues))
-  } catch (e) {
-    yield put(FETCH_VENUES.failure(e))
+  } catch (e: unknown) {
+    const error = e instanceof Error ? e : new Error('unknown error')
+    yield put(FETCH_VENUES.failure(error))
   }
 }
 

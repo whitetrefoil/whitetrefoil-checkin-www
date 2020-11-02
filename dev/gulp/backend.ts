@@ -1,35 +1,12 @@
 import { createProxyMiddleware } from '@whitetrefoil/koa-http-proxy'
-import { Koa, LogLevel, MSM }    from '@whitetrefoil/msm'
 import log                       from 'fancy-log'
 import gulp                      from 'gulp'
-import koaBodyparser             from 'koa-bodyparser'
+import Koa                       from 'koa'
 import { URL }                   from 'url'
 import config                    from '../config'
 
 
-gulp.task('backend:stubapi', done => {
-  const app = new Koa()
-
-  log('Will use StubAPI mode.')
-
-  const msm = new MSM({
-    apiPrefixes: config.apiPrefixes,
-    apiDir     : 'stubapi/',
-    lowerCase  : true,
-    nonChar    : '-',
-    logLevel   : LogLevel.DEBUG,
-  })
-
-  app.use(koaBodyparser())
-  app.use(msm.middleware())
-
-  app.listen(config.serverPort + 1, () => {
-    log(`Backend server listening at port ${config.serverPort + 1}`)
-    done()
-  })
-})
-
-gulp.task('backend:proxy', done => {
+gulp.task('backend', done => {
   const app = new Koa()
 
   log('Will use proxy mode.')

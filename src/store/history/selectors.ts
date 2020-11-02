@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { RS }             from '~/hooks/use-root-selector'
+import type { RS }        from '~/hooks/use-root-selector'
 
 
 export const $history: RS<Record<string, number>> = s => s.history

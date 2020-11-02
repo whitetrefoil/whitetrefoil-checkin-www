@@ -1,5 +1,6 @@
-import ky, { Options } from 'ky'
-import rootStore       from '../store'
+import type { Options } from 'ky'
+import ky               from 'ky'
+import rootStore        from '../store'
 
 
 interface RawResponse<T> {
@@ -43,9 +44,9 @@ export const get = async <RES = unknown>(url: string, options?: Options): Promis
   if (res == null) {
     throw new Error('network error')
   }
-  const json: RawResponse<RES> = await res.json()
+  const json = await res.json() as RawResponse<RES>
   if (!res.ok || json.code == null || json.code > 299) {
-    throw new ApiError(res.status, json.data as string || res.statusText)
+    throw new ApiError(res.status, json.data as string ?? res.statusText)
   }
   return json.data as RES
 }
@@ -55,9 +56,9 @@ export const post = async <RES = unknown>(url: string, options?: Options): Promi
   if (res == null) {
     throw new Error('network error')
   }
-  const json: RawResponse<RES> = await res.json()
+  const json = await res.json() as RawResponse<RES>
   if (!res.ok || json.code == null || json.code > 299) {
-    throw new ApiError(res.status, json.data as string || res.statusText)
+    throw new ApiError(res.status, json.data as string ?? res.statusText)
   }
   return json.data as RES
 }

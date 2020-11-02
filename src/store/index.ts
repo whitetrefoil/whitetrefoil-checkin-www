@@ -1,4 +1,5 @@
-import createSagaMiddleware, { Saga }                    from '@redux-saga/core'
+import type { Saga }                                     from '@redux-saga/core'
+import createSagaMiddleware                              from '@redux-saga/core'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { composeWithDevTools }                           from 'redux-devtools-extension'
 import { fork }                                          from 'redux-saga/effects'

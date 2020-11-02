@@ -1,4 +1,5 @@
-import { FC, useDebugValue } from 'react'
+import type { FC }                   from 'react'
+import { useDebugValue }             from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 
 

@@ -1,6 +1,7 @@
-import { ActionType, createReducer } from 'typesafe-actions'
-import { Geo }                       from '~/interfaces/geo'
-import * as A                        from './actions'
+import type { ActionType } from 'typesafe-actions'
+import { createReducer }   from 'typesafe-actions'
+import type { Geo }        from '~/interfaces/geo'
+import * as A              from './actions'
 
 export type State = Geo|null
 

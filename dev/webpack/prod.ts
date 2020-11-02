@@ -3,6 +3,7 @@ import * as fs                    from 'fs-extra'
 import HtmlWebpackPlugin          from 'html-webpack-plugin'
 import MiniCssExtractPlugin       from 'mini-css-extract-plugin'
 import * as path                  from 'path'
+import type { BabelConfig }       from 'ts-jest/dist/types'
 import { TsconfigPathsPlugin }    from 'tsconfig-paths-webpack-plugin'
 import * as webpack               from 'webpack'
 import { BundleAnalyzerPlugin }   from 'webpack-bundle-analyzer'
@@ -14,10 +15,11 @@ import htmlLoaderOptions          from './html-loader-options'
 const SIZE_14KB = 14336
 
 // See https://github.com/vuejs/vue-loader/issues/678#issuecomment-370965224
-const babelrc = fs.readJsonSync(path.join(__dirname, '../../.babelrc'))
+const babelrc = fs.readJsonSync(path.join(__dirname, '../../.babelrc')) as BabelConfig
 
 
 const prodConfig: webpack.Configuration = {
+
   mode: 'production',
 
   context: config.absSource(''),
@@ -45,8 +47,8 @@ const prodConfig: webpack.Configuration = {
   output: {
     path         : config.absOutput(),
     publicPath   : '',
-    filename     : '[id]-[hash].js',
-    chunkFilename: '[id]-[chunkHash].chunk.js',
+    filename     : '[id]-[contenthash].js',
+    chunkFilename: '[id]-[contenthash].chunk.js',
     globalObject : 'self',
   },
 
@@ -129,7 +131,7 @@ const prodConfig: webpack.Configuration = {
                 localIdentName        : '[hash:base64]',
                 exportLocalsConvention: 'camelCase',
               },
-              importLoaders   : 4,
+              importLoaders: 4,
             },
           },
           'postcss-loader',
@@ -183,7 +185,7 @@ const prodConfig: webpack.Configuration = {
                   limit   : SIZE_14KB,
                   // custom naming format if file is larger than
                   // the threshold
-                  name    : '[hash].[ext]',
+                  name    : '[contenthash].[ext]',
                   fallback: 'file-loader?outputPath=assets&publicPath=./',
                 },
               },
@@ -196,7 +198,7 @@ const prodConfig: webpack.Configuration = {
               {
                 loader : 'file-loader',
                 options: {
-                  name      : 'weixin-[hash].[ext]',
+                  name      : 'weixin-[contenthash].[ext]',
                   outputPath: 'assets',
                   publicPath: './',
                   // See: https://github.com/webpack-contrib/file-loader/issues/350
@@ -214,7 +216,7 @@ const prodConfig: webpack.Configuration = {
                   limit   : SIZE_14KB,
                   // custom naming format if file is larger than
                   // the threshold
-                  name    : '[hash].[ext]',
+                  name    : '[contenthash].[ext]',
                   fallback: 'file-loader?outputPath=assets&publicPath=./',
                 },
               },
@@ -233,19 +235,6 @@ const prodConfig: webpack.Configuration = {
   node: {
     __dirname : true,
     __filename: true,
-  },
-
-  optimization: {
-    moduleIds             : 'named',
-    chunkIds              : 'named',
-    removeAvailableModules: true,
-    splitChunks           : {
-      chunks : 'async',
-      // minChunks: 1,
-      // maxAsyncRequests: Infinity,
-      // maxInitialRequests: Infinity,
-      maxSize: 200 * 1024,
-    },
   },
 
   plugins: [
@@ -277,9 +266,9 @@ const prodConfig: webpack.Configuration = {
     }),
 
     new MiniCssExtractPlugin({
-      filename     : '[id]-[hash].css',
-      chunkFilename: '[id]-[chunkHash].chunk.css',
-    }),
+      filename     : '[id]-[contenthash].css',
+      chunkFilename: '[id]-[contenthash].chunk.css',
+    }) as webpack.WebpackPluginInstance,
 
     new HtmlWebpackPlugin({
       filename      : 'index.html',

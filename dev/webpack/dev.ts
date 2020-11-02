@@ -2,6 +2,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import * as fs                    from 'fs-extra'
 import HtmlWebpackPlugin          from 'html-webpack-plugin'
 import * as path                  from 'path'
+import type { BabelConfig }       from 'ts-jest/dist/types'
 import { TsconfigPathsPlugin }    from 'tsconfig-paths-webpack-plugin'
 import * as webpack               from 'webpack'
 import WorkboxPlugin              from 'workbox-webpack-plugin'
@@ -12,7 +13,7 @@ import htmlLoaderOptions          from './html-loader-options'
 const SIZE_14KB = 14336
 
 // See https://github.com/vuejs/vue-loader/issues/678#issuecomment-370965224
-const babelrc = fs.readJsonSync(path.join(__dirname, '../../.babelrc'))
+const babelrc = fs.readJsonSync(path.join(__dirname, '../../.babelrc')) as BabelConfig
 
 
 const devConfig: webpack.Configuration = {
@@ -45,8 +46,8 @@ const devConfig: webpack.Configuration = {
   output: {
     path         : config.absOutput(),
     publicPath   : '',
-    filename     : '[name]-[hash].js',
-    chunkFilename: '[name]-[chunkHash].chunk.js',
+    filename     : '[name]-[contenthash].js',
+    chunkFilename: '[name]-[contenthash].chunk.js',
     globalObject : 'self',
   },
 
@@ -131,7 +132,7 @@ const devConfig: webpack.Configuration = {
                 exportLocalsConvention: 'camelCase',
               },
               sourceMap    : true,
-              importLoaders   : 4,
+              importLoaders: 4,
             },
           },
           'postcss-loader?sourceMap',
@@ -180,7 +181,7 @@ const devConfig: webpack.Configuration = {
                 loader : 'url-loader',
                 options: {
                   limit   : SIZE_14KB,
-                  name    : '[name]-[hash].[ext]',
+                  name    : '[name]-[contenthash].[ext]',
                   fallback: 'file-loader',
                 },
               },
@@ -193,7 +194,7 @@ const devConfig: webpack.Configuration = {
               {
                 loader : 'file-loader',
                 options: {
-                  name    : '[name]-[hash].[ext]',
+                  name    : '[name]-[contenthash].[ext]',
                   // See: https://github.com/webpack-contrib/file-loader/issues/350
                   esModule: false,
                 },
@@ -206,7 +207,7 @@ const devConfig: webpack.Configuration = {
                 loader : 'url-loader',
                 options: {
                   limit   : SIZE_14KB,
-                  name    : '[name]-[hash].[ext]',
+                  name    : '[name]-[contenthash].[ext]',
                   fallback: 'file-loader',
                 },
               },

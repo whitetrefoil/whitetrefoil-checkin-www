@@ -1,5 +1,5 @@
-import { RS }   from '~/hooks/use-root-selector'
-import { User } from '~/interfaces/user'
+import type { RS }   from '~/hooks/use-root-selector'
+import type { User } from '~/interfaces/user'
 
 export const $token: RS<string|undefined> = s => s.session.token
 

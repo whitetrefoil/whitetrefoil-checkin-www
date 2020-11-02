@@ -1,6 +1,6 @@
 import { parallel, task } from 'gulp'
 
-import './backend'
 import './dev-server'
+import './stubapi'
 
-task('serve', parallel('devServer', 'backend:stubapi'))
+task('serve', parallel('devServer', 'stubapi'))

@@ -1,14 +1,15 @@
 import { useLayoutEffect } from 'preact/hooks'
-import { FC, memo }        from 'react'
+import type { FC }         from 'react'
+import { memo }            from 'react'
 
 
 /** @see https://stackoverflow.com/questions/5573096/detecting-webp-support */
 function canUseWebP() {
   const elem = document.createElement('canvas')
 
-  if (elem.getContext?.('2d')) {
+  if (elem.getContext?.('2d') != null) {
     // was able or not to get WebP representation
-    return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0
+    return elem.toDataURL('image/webp').startsWith('data:image/webp')
   }
 
   // very old browser like IE 8, canvas not supported

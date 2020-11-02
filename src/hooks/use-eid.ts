@@ -6,7 +6,7 @@ export const useEid = (): [
   (key: string) => string,
   (str: TemplateStringsArray) => string,
 ] => {
-  const idStore = useRef({})
+  const idStore = useRef<Record<string, string>>({})
 
   const eid = (key: string): string => {
 
@@ -29,17 +29,17 @@ export const useEid = (): [
 }
 
 
-export const usePid = () => {
-  const idStore = useRef({})
+export const usePid = (): Record<string, string> => {
+  const idStore = useRef<Record<string, string>>({})
   const pid = new Proxy(idStore.current, {
     get: (target, p) => {
-      if (p in target) {
+      if (typeof p === 'string' && p in target) {
         return target[p]
       }
       const newId = `_${generate()}`
-      target[p] = newId
+      target[String(p)] = newId
       return newId
     },
   })
-  return pid as { [key: string]: string }
+  return pid
 }
