@@ -6,6 +6,10 @@ WhiteTrefoil's Checkin (WWW)
 Changelog
 ---------
 
+### v0.3.3
+
+* Upgrade infrastructure.
+
 ### v0.3.2
 
 * Remove cachebuster from manifest file path.
