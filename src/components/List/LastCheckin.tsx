@@ -1,8 +1,7 @@
-import { useMemo }     from 'preact/hooks'
-import prettyMs        from 'pretty-ms'
-import type { FC }     from 'react'
-import React, { memo } from 'react'
-import css             from './index.scss'
+import prettyMs          from 'pretty-ms'
+import type { FC }       from 'react'
+import { memo, useMemo } from 'react'
+import css               from './index.scss'
 
 
 const LastCheckin: FC<{

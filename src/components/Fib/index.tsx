@@ -1,7 +1,6 @@
 import { prevented }             from '@whitetrefoil/jsx-sp-events'
-import { useState }              from 'preact/hooks'
 import type { FC }               from 'react'
-import React, { memo }           from 'react'
+import { memo, useState }        from 'react'
 import { Redirect, useLocation } from 'react-router'
 import css                       from './index.scss'
 
@@ -11,7 +10,9 @@ const Fib: FC = () => {
   const { pathname } = useLocation()
   const [isGotoSearch, goToSearch] = useState(false)
 
-  const onSearch = () => goToSearch(true)
+  const onSearch = () => {
+    goToSearch(true)
+  }
 
   if (pathname === '/search') {
     return null

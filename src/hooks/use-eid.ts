@@ -10,8 +10,9 @@ export const useEid = (): [
 
   const eid = (key: string): string => {
 
-    if (idStore.current[key] != null) {
-      return idStore.current[key]
+    const currentKey = idStore.current[key]
+    if (currentKey != null) {
+      return currentKey
     }
 
     const newId = `eid${generate()}`
@@ -23,7 +24,7 @@ export const useEid = (): [
     return newId
   }
 
-  const i = (str: TemplateStringsArray): string => eid(str[0])
+  const i = (str: TemplateStringsArray): string => eid(str[0] ?? '')
 
   return [eid, i]
 }

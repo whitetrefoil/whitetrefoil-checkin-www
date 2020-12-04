@@ -1,6 +1,5 @@
-import { useEffect }           from 'preact/hooks'
 import type { FC }             from 'react'
-import React, { memo }         from 'react'
+import { memo, useEffect }     from 'react'
 import { useDispatch }         from 'react-redux'
 import List                    from '~/components/List'
 import MainNav                 from '~/components/MainNav'
@@ -30,7 +29,9 @@ const ListFeature: FC = () => {
   const onAuthError = () => dispatch(AUTH_ERROR())
 
   // Cleanup when leave.
-  useEffect(() => () => dispatch(RESET()), [dispatch])
+  useEffect(() => () => {
+    dispatch(RESET())
+  }, [dispatch])
 
   // Request Geolocation.
   useEffect(() => {

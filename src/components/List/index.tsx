@@ -1,5 +1,5 @@
 import type { FC }      from 'react'
-import React, { memo }  from 'react'
+import { memo }         from 'react'
 import type { RS }      from '~/hooks/use-root-selector'
 import type { ValOf }   from '~/hooks/use-val'
 import { useVal }       from '~/hooks/use-val'

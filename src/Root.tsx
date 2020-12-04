@@ -1,5 +1,5 @@
 import type { FC }       from 'react'
-import React, { memo }   from 'react'
+import { memo }          from 'react'
 import ReactDOM          from 'react-dom'
 import { Provider }      from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'

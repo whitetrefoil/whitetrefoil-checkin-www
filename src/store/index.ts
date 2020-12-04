@@ -29,7 +29,10 @@ export const rootReducer = combineReducers({
 
 function *runSagas(sagas: Record<string, Saga>) {
   for (const key of Object.keys(sagas)) {
-    yield fork(sagas[key])
+    const saga = sagas[key]
+    if (saga != null) {
+      yield fork(saga)
+    }
   }
 }
 

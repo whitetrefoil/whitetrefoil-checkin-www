@@ -1,10 +1,9 @@
-import { useMemo }     from 'preact/hooks'
-import type { FC }     from 'react'
-import React, { memo } from 'react'
-import type { ValOf }  from '~/hooks/use-val'
-import { useVal }      from '~/hooks/use-val'
-import type { User }   from '~/interfaces/user'
-import css             from './index.scss'
+import type { FC }       from 'react'
+import { memo, useMemo } from 'react'
+import type { ValOf }    from '~/hooks/use-val'
+import { useVal }        from '~/hooks/use-val'
+import type { User }     from '~/interfaces/user'
+import css               from './index.scss'
 
 
 const Avatar: FC<{

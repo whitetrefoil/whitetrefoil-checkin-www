@@ -1,8 +1,7 @@
-import { prevented }                                from '@whitetrefoil/jsx-sp-events'
-import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
-import type { ChangeEvent, FC, FormEvent }          from 'react'
-import React, { memo }                              from 'react'
-import css                                          from './index.scss'
+import { prevented }                                      from '@whitetrefoil/jsx-sp-events'
+import type { ChangeEvent, FC, FormEvent }                from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import css                                                from './index.scss'
 
 
 const SearchBar: FC<{
@@ -16,9 +15,7 @@ const SearchBar: FC<{
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (inputRef.current != null) {
-      inputRef.current.focus()
-    }
+    inputRef.current?.focus()
   }, [])
 
   useEffect(() => {

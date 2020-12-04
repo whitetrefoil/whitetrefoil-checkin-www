@@ -1,6 +1,5 @@
-import { useLayoutEffect } from 'preact/hooks'
-import type { FC }         from 'react'
-import { memo }            from 'react'
+import type { FC }               from 'react'
+import { memo, useLayoutEffect } from 'react'
 
 
 /** @see https://stackoverflow.com/questions/5573096/detecting-webp-support */

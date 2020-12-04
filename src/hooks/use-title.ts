@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'preact/hooks'
+import { useLayoutEffect } from 'react'
 
 export const useTitle = (title: string) => {
   useLayoutEffect(() => {

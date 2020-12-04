@@ -32,9 +32,11 @@ const devConfig: webpack.Configuration = {
     extensions : ['.tsx', '.ts', '.jsx', '.es6', '.js', '.json'],
     unsafeCache: false,
     alias      : {
-      'react'               : 'preact/compat',
-      'react-dom/test-utils': 'preact/test-utils',
-      'react-dom'           : 'preact/compat',
+      'react/jsx-runtime'    : 'preact/jsx-runtime',
+      'react/jsx-dev-runtime': 'preact/jsx-dev-runtime',
+      'react'                : 'preact/compat',
+      'react-dom/test-utils' : 'preact/test-utils',
+      'react-dom'            : 'preact/compat',
     },
     plugins    : [
       new TsconfigPathsPlugin({
@@ -83,8 +85,11 @@ const devConfig: webpack.Configuration = {
           {
             loader : 'ts-loader',
             options: {
-              transpileOnly: true,
-              configFile   : config.absSource('tsconfig.json'),
+              transpileOnly  : true,
+              configFile     : config.absSource('tsconfig.json'),
+              compilerOptions: {
+                jsx: 'react-jsxdev',
+              },
             },
           },
         ],

@@ -18,7 +18,7 @@ export default createReducer<State, Action>({})
   .handleAction(A.CHECKIN.request, (s, { payload }) => ({
     ...s,
     [payload[0]]: {
-      ...omit(s[payload[0]], 'saveError'),
+      ...omit(s[payload[0]] ?? {}, 'saveError'),
       saving: true,
     },
   }))
@@ -26,7 +26,7 @@ export default createReducer<State, Action>({})
   .handleAction(A.CHECKIN.success, (s, { payload }) => ({
     ...s,
     [payload[0]]: {
-      ...omit(s[payload[0]], ['saveError', 'saving']),
+      ...omit(s[payload[0]] ?? {}, ['saveError', 'saving']),
       data: payload[1],
     },
   }))
@@ -34,7 +34,7 @@ export default createReducer<State, Action>({})
   .handleAction(A.CHECKIN.failure, (s, { payload }) => ({
     ...s,
     [payload[0]]: {
-      ...omit(s[payload[0]], ['saving', 'data']),
+      ...omit(s[payload[0]] ?? {}, ['saving', 'data']),
       saveError: payload[1],
     },
   }))

@@ -33,9 +33,11 @@ const prodConfig: webpack.Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.es6', '.js', '.json'],
     alias     : {
-      'react'               : 'preact/compat',
-      'react-dom/test-utils': 'preact/test-utils',
-      'react-dom'           : 'preact/compat',
+      'react/jsx-runtime'    : 'preact/jsx-runtime',
+      'react/jsx-dev-runtime': 'preact/jsx-dev-runtime',
+      'react'                : 'preact/compat',
+      'react-dom/test-utils' : 'preact/test-utils',
+      'react-dom'            : 'preact/compat',
     },
     plugins   : [
       new TsconfigPathsPlugin({

@@ -1,8 +1,8 @@
-import type { FC }                          from 'react'
-import React, { memo, useEffect, useState } from 'react'
-import { useDispatch }                      from 'react-redux'
-import { getLoginUrl }                      from '~/api/get-login-url'
-import { LOGIN }                            from '~/store/session/actions'
+import type { FC }                   from 'react'
+import { memo, useEffect, useState } from 'react'
+import { useDispatch }               from 'react-redux'
+import { getLoginUrl }               from '~/api/get-login-url'
+import { LOGIN }                     from '~/store/session/actions'
 // import css from './index.scss';
 
 
@@ -20,8 +20,12 @@ const Login: FC = () => {
     }
     if (loginPage == null) {
       getLoginUrl().then(
-        ({ url }) => setLoginPage(url),
-        e => setError(e instanceof Error ? e.message : 'unknown error'),
+        ({ url }) => {
+          setLoginPage(url)
+        },
+        e => {
+          setError(e instanceof Error ? e.message : 'unknown error')
+        },
       )
       return
     }

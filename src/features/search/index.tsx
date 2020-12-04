@@ -1,20 +1,19 @@
-import { useCallback, useEffect }      from 'preact/hooks'
-import type { FC }                     from 'react'
-import React, { memo }                 from 'react'
-import { useDispatch }                 from 'react-redux'
-import List                            from '~/components/List'
-import { useRS }                       from '~/hooks/use-root-selector'
-import { useTitle }                    from '~/hooks/use-title'
-import type { Venue }                  from '~/interfaces/venue'
-import { CHECKIN }                     from '~/store/checkin/actions'
-import { $$checkinById }               from '~/store/checkin/selectors'
-import { GET }                         from '~/store/geo/actions'
-import { $geo }                        from '~/store/geo/selectors'
-import { $history }                    from '~/store/history/selectors'
-import { AUTH_ERROR }                  from '~/store/session/actions'
-import { FETCH_VENUES, RESET, SEARCH } from './actions'
-import SearchBar                       from './SearchBar'
-import { $searchBy, $venues }          from './selectors'
+import type { FC }                      from 'react'
+import { memo, useCallback, useEffect } from 'react'
+import { useDispatch }                  from 'react-redux'
+import List                             from '~/components/List'
+import { useRS }                        from '~/hooks/use-root-selector'
+import { useTitle }                     from '~/hooks/use-title'
+import type { Venue }                   from '~/interfaces/venue'
+import { CHECKIN }                      from '~/store/checkin/actions'
+import { $$checkinById }                from '~/store/checkin/selectors'
+import { GET }                          from '~/store/geo/actions'
+import { $geo }                         from '~/store/geo/selectors'
+import { $history }                     from '~/store/history/selectors'
+import { AUTH_ERROR }                   from '~/store/session/actions'
+import { FETCH_VENUES, RESET, SEARCH }  from './actions'
+import SearchBar                        from './SearchBar'
+import { $searchBy, $venues }           from './selectors'
 // import css from './index.scss';
 
 
@@ -30,7 +29,9 @@ const SearchFeature: FC = () => {
   const onAuthError = () => dispatch(AUTH_ERROR())
 
   // Cleanup when leave.
-  useEffect(() => () => dispatch(RESET()), [dispatch])
+  useEffect(() => () => {
+    dispatch(RESET())
+  }, [dispatch])
 
   // Request Geolocation.
   useEffect(() => {

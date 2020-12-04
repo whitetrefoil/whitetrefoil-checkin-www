@@ -10,8 +10,12 @@ function registerSW() {
     window.addEventListener('load', () => {
       window.navigator.serviceWorker.register('/service-worker.js')
         .then(
-          reg => info('SW registered:', reg),
-          err => warn('SW registration failed:', err),
+          reg => {
+            info('SW registered:', reg)
+          },
+          err => {
+            warn('SW registration failed:', err)
+          },
         )
     })
   }

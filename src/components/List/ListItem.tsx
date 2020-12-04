@@ -1,14 +1,13 @@
-import c                        from 'classnames'
-import { useCallback, useMemo } from 'preact/hooks'
-import type { FC }              from 'react'
-import React, { memo }          from 'react'
-import { useHistory }           from 'react-router'
-import type { ValOf }           from '~/hooks/use-val'
-import { useVal }               from '~/hooks/use-val'
-import type { Checkin }         from '~/interfaces/checkin'
-import type { Venue }           from '~/interfaces/venue'
-import css                      from './index.scss'
-import LastCheckin              from './LastCheckin'
+import c                              from 'classnames'
+import type { FC }                    from 'react'
+import { memo, useCallback, useMemo } from 'react'
+import { useHistory }                 from 'react-router'
+import type { ValOf }                 from '~/hooks/use-val'
+import { useVal }                     from '~/hooks/use-val'
+import type { Checkin }               from '~/interfaces/checkin'
+import type { Venue }                 from '~/interfaces/venue'
+import css                            from './index.scss'
+import LastCheckin                    from './LastCheckin'
 
 
 const ListItem: FC<{
@@ -44,7 +43,7 @@ const ListItem: FC<{
         status != null ? css.success :
           undefined,
     {
-      [css.isMayor]: status?.isMayor,
+      [css.isMayor ?? '']: status?.isMayor,
     },
   ), [saveError, saving, status])
 
